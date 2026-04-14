@@ -43,11 +43,18 @@ git branch -M main
 git push -u origin main
 ```
 
-5. En GitHub, ve a `Settings > Pages` y deja `Source: GitHub Actions`.
+5. En GitHub, agrega estos `Actions secrets` para el deploy por FTP:
+
+```text
+FTP_SERVER
+FTP_USERNAME
+FTP_PASSWORD
+FTP_DIR
+```
 
 ## Notas de deploy
 
-- El workflow `.github/workflows/deploy-pages.yml` ya compila y publica automáticamente en GitHub Pages.
-- Para GitHub Pages de un repo proyecto, el build usa `LANDING_BASE_PATH="/<repo>"`.
-- Para otro hosting, el valor por defecto sigue siendo `basePath: "/lp/champions-2026"` en `site.config.ts`.
-- Si lo vas a publicar en un dominio raíz o en otra ruta, ajusta `LANDING_BASE_PATH` en CI o cambia `site.config.ts` y `public/.htaccess`.
+- El workflow `.github/workflows/deploy-hostinger.yml` compila y publica automáticamente en Hostinger por FTP.
+- Para este landing, el destino recomendado es `FTP_DIR=/public_html/lp/champions-2026/`.
+- El `basePath` por defecto ya está configurado como `"/lp/champions-2026"` en `site.config.ts`.
+- Si lo vas a publicar en otra ruta, ajusta `site.config.ts` antes de hacer deploy.
