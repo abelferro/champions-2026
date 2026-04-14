@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     template: `%s | ${landingConfig.brandName}`,
   },
   description: landingConfig.description,
-  keywords: landingConfig.keywords,
+  keywords: [...landingConfig.keywords],
   authors: [{ name: landingConfig.brandName }],
   openGraph: {
     type: "website",
