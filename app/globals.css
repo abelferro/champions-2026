@@ -1,8 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap");
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Mulish", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif;
 
   --color-brand-ink: #1d1b45;
   --color-brand-blue: #326cfc;
