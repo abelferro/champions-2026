@@ -1,6 +1,7 @@
 "use client";
 
-import { CheckCircle2, ChevronLeft, X } from "lucide-react";
+import { CheckCircle2, ChevronDown, ChevronLeft, X } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useMemo, useState } from "react";
 
 type ContactFormProps = {
@@ -86,6 +87,17 @@ const interestOptions = [
     description: "Start the conversation if you are still exploring options.",
   },
 ];
+
+const roleOptions = [
+  { value: "", label: "Select your role" },
+  { value: "agency-leader", label: "Agency leader" },
+  { value: "provider-leader", label: "Provider leader" },
+  { value: "educator", label: "Educator" },
+  { value: "quality-specialist", label: "Quality specialist" },
+  { value: "data-operations", label: "Data / operations leader" },
+  { value: "partner-organization", label: "Partner organization" },
+  { value: "other", label: "Other" },
+] as const;
 
 const stepContent = {
   1: {
@@ -346,248 +358,284 @@ export default function MauticContactForm({
           onSubmit={handleSubmit}
           noValidate
         >
-          {currentStep === 1 && (
-            <section className="grid gap-5 md:grid-cols-2">
-              <div>
-                <label className="mb-3 block text-sm font-extrabold text-brand-ink">
-                  Your first name
-                </label>
-                <input
-                  id="mauticform_input_welslandingcapture_first_name"
-                  name="mauticform[first_name]"
-                  type="text"
-                  autoComplete="given-name"
-                  placeholder="Jane"
-                  value={formData.first_name}
-                  onChange={(event) =>
-                    updateField("first_name", event.target.value)
-                  }
-                  className={`w-full rounded-[24px] border px-5 py-4 text-lg text-brand-ink placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-slate-100 ${
-                    errors.first_name
-                      ? "border-rose-300 bg-rose-50"
-                      : "border-slate-200 bg-white"
-                  }`}
-                />
-                {errors.first_name && (
-                  <p className="mt-2 text-sm font-semibold text-rose-600">
-                    {errors.first_name}
-                  </p>
-                )}
-              </div>
-
-              <div>
-                <label className="mb-3 block text-sm font-extrabold text-brand-ink">
-                  Your last name
-                </label>
-                <input
-                  id="mauticform_input_welslandingcapture_last_name"
-                  name="mauticform[last_name]"
-                  type="text"
-                  autoComplete="family-name"
-                  placeholder="Smith"
-                  value={formData.last_name}
-                  onChange={(event) =>
-                    updateField("last_name", event.target.value)
-                  }
-                  className="w-full rounded-[24px] border border-slate-200 bg-white px-5 py-4 text-lg text-brand-ink placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-slate-100"
-                />
-              </div>
-
-              <div className="md:col-span-2">
-                <label className="mb-3 block text-sm font-extrabold text-brand-ink">
-                  Your email
-                </label>
-                <input
-                  id="mauticform_input_welslandingcapture_email"
-                  name="mauticform[email]"
-                  type="email"
-                  autoComplete="email"
-                  inputMode="email"
-                  placeholder="you@example.com"
-                  value={formData.email}
-                  onChange={(event) => updateField("email", event.target.value)}
-                  className={`w-full rounded-[24px] border px-5 py-4 text-lg text-brand-ink placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-slate-100 ${
-                    errors.email
-                      ? "border-rose-300 bg-rose-50"
-                      : "border-slate-200 bg-white"
-                  }`}
-                />
-                {errors.email && (
-                  <p className="mt-2 text-sm font-semibold text-rose-600">
-                    {errors.email}
-                  </p>
-                )}
-              </div>
-            </section>
-          )}
-
-          {currentStep === 2 && (
-            <section className="grid gap-5 md:grid-cols-2">
-              <div className="md:col-span-2">
-                <label className="mb-3 block text-sm font-extrabold text-brand-ink">
-                  Organization
-                </label>
-                <input
-                  id="mauticform_input_welslandingcapture_organization"
-                  name="mauticform[organization]"
-                  type="text"
-                  autoComplete="organization"
-                  placeholder="Organization name"
-                  value={formData.organization}
-                  onChange={(event) =>
-                    updateField("organization", event.target.value)
-                  }
-                  className={`w-full rounded-[24px] border px-5 py-4 text-lg text-brand-ink placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-slate-100 ${
-                    errors.organization
-                      ? "border-rose-300 bg-rose-50"
-                      : "border-slate-200 bg-white"
-                  }`}
-                />
-                {errors.organization && (
-                  <p className="mt-2 text-sm font-semibold text-rose-600">
-                    {errors.organization}
-                  </p>
-                )}
-              </div>
-
-              <div>
-                <label className="mb-3 block text-sm font-extrabold text-brand-ink">
-                  Role
-                </label>
-                <input
-                  id="mauticform_input_welslandingcapture_role"
-                  name="mauticform[role]"
-                  type="text"
-                  placeholder="Your role"
-                  value={formData.role}
-                  onChange={(event) => updateField("role", event.target.value)}
-                  className="w-full rounded-[24px] border border-slate-200 bg-white px-5 py-4 text-lg text-brand-ink placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-slate-100"
-                />
-              </div>
-
-              <div>
-                <label className="mb-3 block text-sm font-extrabold text-brand-ink">
-                  Phone number
-                </label>
-                <input
-                  id="mauticform_input_welslandingcapture_phone_number"
-                  name="mauticform[phone_number]"
-                  type="tel"
-                  autoComplete="tel"
-                  inputMode="tel"
-                  placeholder="(555) 555-5555"
-                  value={formData.phone_number}
-                  onChange={(event) =>
-                    updateField("phone_number", event.target.value)
-                  }
-                  className="w-full rounded-[24px] border border-slate-200 bg-white px-5 py-4 text-lg text-brand-ink placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-slate-100"
-                />
-              </div>
-            </section>
-          )}
-
-          {currentStep === 3 && (
-            <section className="grid gap-5">
-              <fieldset>
-                <legend className="mb-3 block text-sm font-extrabold text-brand-ink">
-                  Interest
-                </legend>
-                <div className="mb-3 flex flex-wrap items-center gap-3">
-                  <p className="text-sm text-slate-500">
-                    Choose one or more areas of interest.
-                  </p>
-                  {formData.interest1.length > 0 && (
-                    <span
-                      className="rounded-full px-3 py-1 text-xs font-extrabold uppercase tracking-[0.16em] text-white"
-                      style={{ background: accentGradient }}
-                    >
-                      {formData.interest1.length} selected
-                    </span>
+          <AnimatePresence mode="wait" initial={false}>
+            {currentStep === 1 && (
+              <motion.section
+                key="step-1"
+                initial={{ opacity: 0, y: 18, filter: "blur(6px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, y: -12, filter: "blur(6px)" }}
+                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                className="grid gap-5 md:grid-cols-2"
+              >
+                <div>
+                  <label className="mb-3 block text-sm font-extrabold text-brand-ink">
+                    Your first name
+                  </label>
+                  <input
+                    id="mauticform_input_welslandingcapture_first_name"
+                    name="mauticform[first_name]"
+                    type="text"
+                    autoComplete="given-name"
+                    placeholder="Jane"
+                    value={formData.first_name}
+                    onChange={(event) =>
+                      updateField("first_name", event.target.value)
+                    }
+                    className={`w-full rounded-[24px] border px-5 py-4 text-lg text-brand-ink placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-slate-100 ${
+                      errors.first_name
+                        ? "border-rose-300 bg-rose-50"
+                        : "border-slate-200 bg-white"
+                    }`}
+                  />
+                  {errors.first_name && (
+                    <p className="mt-2 text-sm font-semibold text-rose-600">
+                      {errors.first_name}
+                    </p>
                   )}
                 </div>
-                <div className="grid gap-3 md:grid-cols-2">
-                  {interestOptions.map((option) => {
-                    const selected = formData.interest1.includes(option.value);
 
-                    return (
-                      <button
-                        key={option.value}
-                        type="button"
-                        aria-pressed={selected}
-                        onClick={() => toggleInterest(option.value)}
-                        className={`group relative rounded-[24px] border p-5 text-left transition ${
-                          selected
-                            ? "border-transparent bg-slate-50 shadow-[0_16px_36px_rgba(50,108,252,0.12)]"
-                            : "border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50/70"
-                        }`}
-                        style={selected ? { boxShadow: "0 16px 36px rgba(50,108,252,0.12)" } : undefined}
-                      >
-                        {selected && (
-                          <div
-                            className="absolute inset-x-0 top-0 h-1 rounded-t-[24px]"
-                            style={{ background: accentGradient }}
-                          />
-                        )}
-                        <div className="flex items-start gap-4">
-                          <div
-                            className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border transition ${
-                              selected
-                                ? "border-transparent text-white"
-                                : "border-slate-300 bg-white text-transparent"
-                            }`}
-                            style={selected ? { background: accentGradient } : undefined}
-                          >
-                            <CheckCircle2 size={14} />
-                          </div>
-                          <div>
-                            <p className="text-base font-black leading-tight text-brand-ink">
-                              {option.label}
-                            </p>
-                            <p className="mt-2 text-sm leading-6 text-slate-600">
-                              {option.description}
-                            </p>
-                          </div>
-                        </div>
-                      </button>
-                    );
-                  })}
+                <div>
+                  <label className="mb-3 block text-sm font-extrabold text-brand-ink">
+                    Your last name
+                  </label>
+                  <input
+                    id="mauticform_input_welslandingcapture_last_name"
+                    name="mauticform[last_name]"
+                    type="text"
+                    autoComplete="family-name"
+                    placeholder="Smith"
+                    value={formData.last_name}
+                    onChange={(event) =>
+                      updateField("last_name", event.target.value)
+                    }
+                    className="w-full rounded-[24px] border border-slate-200 bg-white px-5 py-4 text-lg text-brand-ink placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-slate-100"
+                  />
                 </div>
-                <div className="sr-only" aria-hidden="true">
-                  {formData.interest1.map((value) => (
-                    <input
-                      key={value}
-                      type="hidden"
-                      name="mauticform[interest1][]"
-                      value={value}
-                      readOnly
+
+                <div className="md:col-span-2">
+                  <label className="mb-3 block text-sm font-extrabold text-brand-ink">
+                    Your email
+                  </label>
+                  <input
+                    id="mauticform_input_welslandingcapture_email"
+                    name="mauticform[email]"
+                    type="email"
+                    autoComplete="email"
+                    inputMode="email"
+                    placeholder="you@example.com"
+                    value={formData.email}
+                    onChange={(event) => updateField("email", event.target.value)}
+                    className={`w-full rounded-[24px] border px-5 py-4 text-lg text-brand-ink placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-slate-100 ${
+                      errors.email
+                        ? "border-rose-300 bg-rose-50"
+                        : "border-slate-200 bg-white"
+                    }`}
+                  />
+                  {errors.email && (
+                    <p className="mt-2 text-sm font-semibold text-rose-600">
+                      {errors.email}
+                    </p>
+                  )}
+                </div>
+              </motion.section>
+            )}
+
+            {currentStep === 2 && (
+              <motion.section
+                key="step-2"
+                initial={{ opacity: 0, y: 18, filter: "blur(6px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, y: -12, filter: "blur(6px)" }}
+                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                className="grid gap-5 md:grid-cols-2"
+              >
+                <div className="md:col-span-2">
+                  <label className="mb-3 block text-sm font-extrabold text-brand-ink">
+                    Organization
+                  </label>
+                  <input
+                    id="mauticform_input_welslandingcapture_organization"
+                    name="mauticform[organization]"
+                    type="text"
+                    autoComplete="organization"
+                    placeholder="Organization name"
+                    value={formData.organization}
+                    onChange={(event) =>
+                      updateField("organization", event.target.value)
+                    }
+                    className={`w-full rounded-[24px] border px-5 py-4 text-lg text-brand-ink placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-slate-100 ${
+                      errors.organization
+                        ? "border-rose-300 bg-rose-50"
+                        : "border-slate-200 bg-white"
+                    }`}
+                  />
+                  {errors.organization && (
+                    <p className="mt-2 text-sm font-semibold text-rose-600">
+                      {errors.organization}
+                    </p>
+                  )}
+                </div>
+
+                <div>
+                  <label className="mb-3 block text-sm font-extrabold text-brand-ink">
+                    Role
+                  </label>
+                  <div className="relative">
+                    <select
+                      id="mauticform_input_welslandingcapture_role"
+                      name="mauticform[role]"
+                      value={formData.role}
+                      onChange={(event) => updateField("role", event.target.value)}
+                      className="w-full appearance-none rounded-[24px] border border-slate-200 bg-white px-5 py-4 pr-14 text-lg text-brand-ink focus:outline-none focus:ring-4 focus:ring-slate-100"
+                    >
+                      {roleOptions.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown
+                      size={20}
+                      className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-slate-400"
                     />
-                  ))}
-                </div>
-                {errors.interest1 && (
-                  <p className="mt-2 text-sm font-semibold text-rose-600">
-                    {errors.interest1}
+                  </div>
+                  <p className="mt-2 text-sm leading-6 text-slate-500">
+                    Choose the closest match for your team.
                   </p>
-                )}
-              </fieldset>
+                </div>
 
-              <div>
-                <label className="mb-3 block text-sm font-extrabold text-brand-ink">
-                  Message
-                </label>
-                <textarea
-                  id="mauticform_input_welslandingcapture_f_message"
-                  name="mauticform[f_message]"
-                  rows={5}
-                  placeholder="Tell us a little more about what you need."
-                  value={formData.f_message}
-                  onChange={(event) =>
-                    updateField("f_message", event.target.value)
-                  }
-                  className="w-full rounded-[24px] border border-slate-200 bg-white px-5 py-4 text-base text-brand-ink placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-slate-100"
-                />
-              </div>
-            </section>
-          )}
+                <div>
+                  <label className="mb-3 block text-sm font-extrabold text-brand-ink">
+                    Phone number
+                  </label>
+                  <input
+                    id="mauticform_input_welslandingcapture_phone_number"
+                    name="mauticform[phone_number]"
+                    type="tel"
+                    autoComplete="tel"
+                    inputMode="tel"
+                    placeholder="(555) 555-5555"
+                    value={formData.phone_number}
+                    onChange={(event) =>
+                      updateField("phone_number", event.target.value)
+                    }
+                    className="w-full rounded-[24px] border border-slate-200 bg-white px-5 py-4 text-lg text-brand-ink placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-slate-100"
+                  />
+                </div>
+              </motion.section>
+            )}
+
+            {currentStep === 3 && (
+              <motion.section
+                key="step-3"
+                initial={{ opacity: 0, y: 18, filter: "blur(6px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, y: -12, filter: "blur(6px)" }}
+                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                className="grid gap-5"
+              >
+                <fieldset>
+                  <legend className="mb-3 block text-sm font-extrabold text-brand-ink">
+                    Interest
+                  </legend>
+                  <div className="mb-3 flex flex-wrap items-center gap-3">
+                    <p className="text-sm text-slate-500">
+                      Choose one or more areas of interest.
+                    </p>
+                    {formData.interest1.length > 0 && (
+                      <span
+                        className="rounded-full px-3 py-1 text-xs font-extrabold uppercase tracking-[0.16em] text-white"
+                        style={{ background: accentGradient }}
+                      >
+                        {formData.interest1.length} selected
+                      </span>
+                    )}
+                  </div>
+                  <div className="grid gap-3 md:grid-cols-2">
+                    {interestOptions.map((option) => {
+                      const selected = formData.interest1.includes(option.value);
+
+                      return (
+                        <button
+                          key={option.value}
+                          type="button"
+                          aria-pressed={selected}
+                          onClick={() => toggleInterest(option.value)}
+                          className={`group relative rounded-[24px] border p-5 text-left transition ${
+                            selected
+                              ? "border-transparent bg-slate-50 shadow-[0_16px_36px_rgba(50,108,252,0.12)]"
+                              : "border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50/70"
+                          }`}
+                          style={selected ? { boxShadow: "0 16px 36px rgba(50,108,252,0.12)" } : undefined}
+                        >
+                          {selected && (
+                            <div
+                              className="absolute inset-x-0 top-0 h-1 rounded-t-[24px]"
+                              style={{ background: accentGradient }}
+                            />
+                          )}
+                          <div className="flex items-start gap-4">
+                            <div
+                              className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border transition ${
+                                selected
+                                  ? "border-transparent text-white"
+                                  : "border-slate-300 bg-white text-transparent"
+                              }`}
+                              style={selected ? { background: accentGradient } : undefined}
+                            >
+                              <CheckCircle2 size={14} />
+                            </div>
+                            <div>
+                              <p className="text-base font-black leading-tight text-brand-ink">
+                                {option.label}
+                              </p>
+                              <p className="mt-2 text-sm leading-6 text-slate-600">
+                                {option.description}
+                              </p>
+                            </div>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <div className="sr-only" aria-hidden="true">
+                    {formData.interest1.map((value) => (
+                      <input
+                        key={value}
+                        type="hidden"
+                        name="mauticform[interest1][]"
+                        value={value}
+                        readOnly
+                      />
+                    ))}
+                  </div>
+                  {errors.interest1 && (
+                    <p className="mt-2 text-sm font-semibold text-rose-600">
+                      {errors.interest1}
+                    </p>
+                  )}
+                </fieldset>
+
+                <div>
+                  <label className="mb-3 block text-sm font-extrabold text-brand-ink">
+                    Message
+                  </label>
+                  <textarea
+                    id="mauticform_input_welslandingcapture_f_message"
+                    name="mauticform[f_message]"
+                    rows={5}
+                    placeholder="Tell us a little more about what you need."
+                    value={formData.f_message}
+                    onChange={(event) =>
+                      updateField("f_message", event.target.value)
+                    }
+                    className="w-full rounded-[24px] border border-slate-200 bg-white px-5 py-4 text-base text-brand-ink placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-slate-100"
+                  />
+                </div>
+              </motion.section>
+            )}
+          </AnimatePresence>
 
           <p className="mt-5 text-base leading-7 text-slate-500">
             {stepContent[currentStep].helper}
