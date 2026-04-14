@@ -22,6 +22,7 @@ import MauticContactForm from "@/components/MauticContactForm";
 
 const logoUrl =
   "https://tds.bwelz.org/logos/wels/digital/SVG/wels-Horizontal_Logo_RGB_Full_Color.svg?Expires=1881081483&Signature=XZYm8YQbfhBMaBRxh~YRLGK60sm39SHfjqQIx85sg8dJiw3mbBNeRt28fGyUnbgl5DEA31ZQy-lJuBOwYxLa7tFN3JaB3SxBQVHMua6WqRZqfqjAXIE9v9jWCLrV-EBwboXVOdkzk2jdk3NLcOH-kbiU~UWOd7xrUy6jnuyYFc0zZNmQl3LFx-iXo04pfYzjEJ0si68wsLfoyLs~ejS~7K0yvYTEEUYCxZn-6gTWh8FT8PWl6Ni9CJKKxqg5DZlJsOPoS4tuM7xR6E7iCsIAdowDCzfbB~w9CUeZoHTNopzkXrYQfFlmVO00290Baap32us-kz0LIotdxmSBZ-bt7A__&Key-Pair-Id=K1PPZDIOWN47R1";
+const coachingItemUrl = "/images/WELS_Portal_Coaching_Item.png";
 const mikeUrl =
   "https://welsfoundation.org/wp-content/uploads/2022/03/mike-bwelz-360px.jpg";
 
@@ -342,6 +343,14 @@ export default function LandingPage() {
               It also connects those records to calendars, approvals, and
               reporting so progress does not get lost between systems.
             </p>
+            <div className="mt-8 overflow-hidden rounded-[28px] border border-brand-blue/10 bg-white/82 p-4 shadow-[0_20px_45px_rgba(29,27,69,0.08)]">
+              <img
+                src={coachingItemUrl}
+                alt="WELS portal coaching item"
+                className="mx-auto w-full max-w-[420px]"
+                loading="lazy"
+              />
+            </div>
             <div className="mt-8 rounded-[28px] bg-brand-ink p-6 text-white">
               <p className="text-sm font-extrabold uppercase tracking-[0.2em] text-brand-yellow">
                 Why it matters
