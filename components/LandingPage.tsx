@@ -18,6 +18,7 @@ import {
   Users,
   Wallet,
 } from "lucide-react";
+import MauticContactForm from "@/components/MauticContactForm";
 
 const logoUrl =
   "https://welsfoundation.org/wp-content/uploads/2022/05/wels-logo-horizontal.svg";
@@ -463,48 +464,58 @@ export default function LandingPage() {
             </div>
           </div>
 
-          <div className="rounded-[30px] border border-white/70 bg-white/92 p-6 shadow-[0_26px_60px_rgba(29,27,69,0.10)]">
-            <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
-              <img
-                src={mikeUrl}
-                alt="Mike Cullen"
-                className="h-28 w-28 rounded-[26px] object-cover"
-                loading="lazy"
-              />
-              <div>
-                <p className="text-sm font-extrabold uppercase tracking-[0.2em] text-brand-blue">
-                  Mike Cullen
-                </p>
-                <h3 className="mt-2 text-2xl font-black text-brand-ink">
-                  Support Manager
-                </h3>
-                <p className="mt-3 text-base leading-7 text-slate-600">
-                  A direct point of contact for scheduling demos, answering
-                  product questions, and helping partners understand which WELS
-                  tools fit their goals.
-                </p>
+          <div className="space-y-6">
+            <div className="rounded-[30px] border border-white/70 bg-white/92 p-6 shadow-[0_26px_60px_rgba(29,27,69,0.10)]">
+              <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
+                <img
+                  src={mikeUrl}
+                  alt="Mike Cullen"
+                  className="h-28 w-28 rounded-[26px] object-cover"
+                  loading="lazy"
+                />
+                <div>
+                  <p className="text-sm font-extrabold uppercase tracking-[0.2em] text-brand-blue">
+                    Mike Cullen
+                  </p>
+                  <h3 className="mt-2 text-2xl font-black text-brand-ink">
+                    Support Manager
+                  </h3>
+                  <p className="mt-3 text-base leading-7 text-slate-600">
+                    A direct point of contact for scheduling demos, answering
+                    product questions, and helping partners understand which
+                    WELS tools fit their goals.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a
+                  href="https://welsfoundation.org/contact-us/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-brand-blue px-5 py-3 text-sm font-bold text-white transition hover:bg-brand-ink"
+                >
+                  Visit contact page
+                  <ArrowRight size={18} />
+                </a>
+                <a
+                  href="https://welsfoundation.org/the-wels-system/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-brand-blue/20 px-5 py-3 text-sm font-bold text-brand-ink transition hover:border-brand-blue hover:text-brand-blue"
+                >
+                  See the WELS system
+                </a>
               </div>
             </div>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href="https://welsfoundation.org/contact-us/"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-brand-blue px-5 py-3 text-sm font-bold text-white transition hover:bg-brand-ink"
-              >
-                Visit contact page
-                <ArrowRight size={18} />
-              </a>
-              <a
-                href="https://welsfoundation.org/the-wels-system/"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-brand-blue/20 px-5 py-3 text-sm font-bold text-brand-ink transition hover:border-brand-blue hover:text-brand-blue"
-              >
-                See the WELS system
-              </a>
-            </div>
+            <MauticContactForm
+              formKicker="WELS contact form"
+              formTitle="Tell us about your goals."
+              successKicker="Thanks for reaching out"
+              successTitle="We have your message."
+              successMessage="A WELS team member will follow up soon about your Champions and early learning goals."
+            />
           </div>
         </motion.div>
       </section>
