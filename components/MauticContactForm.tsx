@@ -40,21 +40,51 @@ const initialState: FormState = {
 };
 
 const interestOptions = [
-  { value: "schedule-demo", label: "Schedule a demo" },
-  { value: "professional-portal", label: "Professional Portal" },
-  { value: "workforce-development", label: "Workforce Development" },
-  { value: "training-credentials", label: "Training & Credentials" },
-  { value: "scholarships-incentives", label: "Scholarships / Incentives" },
+  {
+    value: "schedule-demo",
+    label: "Schedule a demo",
+    description: "See the platform in action with a guided WELS walkthrough.",
+  },
+  {
+    value: "professional-portal",
+    label: "Professional Portal",
+    description: "Manage educator records, workforce data, and next steps.",
+  },
+  {
+    value: "workforce-development",
+    label: "Workforce Development",
+    description: "Support educator growth across systems, roles, and programs.",
+  },
+  {
+    value: "training-credentials",
+    label: "Training & Credentials",
+    description: "Track learning, coursework, certificates, and completions.",
+  },
+  {
+    value: "scholarships-incentives",
+    label: "Scholarships / Incentives",
+    description: "Connect funding, supports, and educator advancement.",
+  },
   {
     value: "badges-quality-recognition",
     label: "Badges / Quality Recognition",
+    description: "Make quality efforts visible through recognition markers.",
   },
-  { value: "data-reporting", label: "Data & Reporting" },
+  {
+    value: "data-reporting",
+    label: "Data & Reporting",
+    description: "Turn collected information into practical reporting insight.",
+  },
   {
     value: "partnership-opportunities",
     label: "Partnership Opportunities",
+    description: "Explore collaboration, implementation, and ecosystem support.",
   },
-  { value: "general-information", label: "General Information" },
+  {
+    value: "general-information",
+    label: "General Information",
+    description: "Start the conversation if you are still exploring options.",
+  },
 ];
 
 const stepContent = {
@@ -191,6 +221,14 @@ export default function MauticContactForm({
   function handlePrevious(previousStep: 1 | 2) {
     setSubmissionError("");
     setCurrentStep(previousStep);
+  }
+
+  function toggleInterest(value: string) {
+    const nextSelection = formData.interest1.includes(value)
+      ? formData.interest1.filter((item) => item !== value)
+      : [...formData.interest1, value];
+
+    updateField("interest1", nextSelection);
   }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -450,43 +488,87 @@ export default function MauticContactForm({
 
           {currentStep === 3 && (
             <section className="grid gap-5">
-              <div>
-                <label className="mb-3 block text-sm font-extrabold text-brand-ink">
+              <fieldset>
+                <legend className="mb-3 block text-sm font-extrabold text-brand-ink">
                   Interest
-                </label>
-                <select
-                  id="mauticform_input_welslandingcapture_interest1"
-                  name="mauticform[interest1][]"
-                  multiple
-                  size={6}
-                  value={formData.interest1}
-                  onChange={(event) =>
-                    updateField(
-                      "interest1",
-                      Array.from(event.target.selectedOptions, (option) => option.value),
-                    )
-                  }
-                  className={`w-full rounded-[24px] border px-5 py-4 text-base text-brand-ink focus:outline-none focus:ring-4 focus:ring-slate-100 ${
-                    errors.interest1
-                      ? "border-rose-300 bg-rose-50"
-                      : "border-slate-200 bg-white"
-                  }`}
-                >
-                  {interestOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
+                </legend>
+                <div className="mb-3 flex flex-wrap items-center gap-3">
+                  <p className="text-sm text-slate-500">
+                    Choose one or more areas of interest.
+                  </p>
+                  {formData.interest1.length > 0 && (
+                    <span
+                      className="rounded-full px-3 py-1 text-xs font-extrabold uppercase tracking-[0.16em] text-white"
+                      style={{ background: accentGradient }}
+                    >
+                      {formData.interest1.length} selected
+                    </span>
+                  )}
+                </div>
+                <div className="grid gap-3 md:grid-cols-2">
+                  {interestOptions.map((option) => {
+                    const selected = formData.interest1.includes(option.value);
+
+                    return (
+                      <button
+                        key={option.value}
+                        type="button"
+                        aria-pressed={selected}
+                        onClick={() => toggleInterest(option.value)}
+                        className={`group relative rounded-[24px] border p-5 text-left transition ${
+                          selected
+                            ? "border-transparent bg-slate-50 shadow-[0_16px_36px_rgba(50,108,252,0.12)]"
+                            : "border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50/70"
+                        }`}
+                        style={selected ? { boxShadow: "0 16px 36px rgba(50,108,252,0.12)" } : undefined}
+                      >
+                        {selected && (
+                          <div
+                            className="absolute inset-x-0 top-0 h-1 rounded-t-[24px]"
+                            style={{ background: accentGradient }}
+                          />
+                        )}
+                        <div className="flex items-start gap-4">
+                          <div
+                            className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border transition ${
+                              selected
+                                ? "border-transparent text-white"
+                                : "border-slate-300 bg-white text-transparent"
+                            }`}
+                            style={selected ? { background: accentGradient } : undefined}
+                          >
+                            <CheckCircle2 size={14} />
+                          </div>
+                          <div>
+                            <p className="text-base font-black leading-tight text-brand-ink">
+                              {option.label}
+                            </p>
+                            <p className="mt-2 text-sm leading-6 text-slate-600">
+                              {option.description}
+                            </p>
+                          </div>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+                <div className="sr-only" aria-hidden="true">
+                  {formData.interest1.map((value) => (
+                    <input
+                      key={value}
+                      type="hidden"
+                      name="mauticform[interest1][]"
+                      value={value}
+                      readOnly
+                    />
                   ))}
-                </select>
-                <p className="mt-2 text-sm text-slate-500">
-                  Choose one or more areas of interest.
-                </p>
+                </div>
                 {errors.interest1 && (
                   <p className="mt-2 text-sm font-semibold text-rose-600">
                     {errors.interest1}
                   </p>
                 )}
-              </div>
+              </fieldset>
 
               <div>
                 <label className="mb-3 block text-sm font-extrabold text-brand-ink">
