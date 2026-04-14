@@ -172,26 +172,15 @@ export default function LandingPage() {
           />
         </a>
         <a
-          href="https://welsfoundation.org/contact-us/"
-          target="_blank"
-          rel="noreferrer"
+          href="#contact"
           className="wels-outline hidden text-sm font-bold text-brand-ink md:inline-flex"
         >
-          Book a demo
+          Start a conversation
         </a>
       </header>
 
       <section className="mx-auto grid max-w-7xl gap-10 px-6 pb-18 pt-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <motion.div {...reveal()} className="relative z-10">
-          <div className="flex flex-wrap gap-3">
-            <span className="wels-outline bg-white/80 text-xs font-extrabold uppercase tracking-[0.22em] text-brand-blue">
-              WELS Systems Foundation
-            </span>
-            <span className="wels-outline bg-white/80 text-sm font-semibold text-slate-700">
-              Champions for Children 2026
-            </span>
-          </div>
-
           <h1 className="mt-8 max-w-3xl text-5xl font-black leading-[0.98] tracking-tight text-brand-ink md:text-7xl">
             Thank You,
             <span className="gradient-text block">Champions.</span>
@@ -519,6 +508,20 @@ export default function LandingPage() {
           </div>
         </motion.div>
       </section>
+
+      <footer className="mx-auto max-w-7xl px-6 pb-16">
+        <motion.div
+          {...reveal()}
+          className="flex flex-wrap items-center justify-center gap-3"
+        >
+          <span className="wels-outline bg-white/80 text-xs font-extrabold uppercase tracking-[0.22em] text-brand-blue">
+            WELS Systems Foundation
+          </span>
+          <span className="wels-outline bg-white/80 text-sm font-semibold text-slate-700">
+            Champions for Children 2026
+          </span>
+        </motion.div>
+      </footer>
     </main>
   );
 }
