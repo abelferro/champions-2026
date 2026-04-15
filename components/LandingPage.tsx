@@ -52,28 +52,41 @@ const honorees = [
     name: "Gepsie Metellus",
     honor: "David Lawrence Jr. Champion for Children Award",
     image: "./images/gepsie-400.png",
+    href: "https://www.thechildrenstrust.org/calendar/champions-for-children/david-lawrence-jr-champion-for-children-award/",
   },
   {
     name: "Twala Kelly",
     honor: "Excellence in Direct Service Award",
     image: "./images/twala-400.png",
+    href: "https://www.thechildrenstrust.org/calendar/champions-for-children/excellence-in-direct-service-award/",
   },
   {
     name: "Andrea Cabrera-Elguezabal",
     honor: "Excellence in Youth Leadership Award",
     image: "./images/andrea-400.png",
+    href: "https://www.thechildrenstrust.org/calendar/champions-for-children/excellence-in-youth-leadership-award/",
   },
   {
     name: "Hon. Alexis Calatayud",
     honor: "Excellence in Advocacy Award",
     image: "./images/hon-400.png",
+    href: "https://www.thechildrenstrust.org/calendar/champions-for-children/excellence-in-advocacy-award/",
   },
 ];
 
 const programsOfTheYear = [
-  { name: "Families First Program" },
-  { name: "Little SEALS Program" },
-  { name: "The Children's Trust Parent Club" },
+  {
+    name: "Families First Program",
+    href: "https://www.thechildrenstrust.org/calendar/champions-for-children/program-of-the-year-award/",
+  },
+  {
+    name: "Little SEALS Program",
+    href: "https://www.thechildrenstrust.org/calendar/champions-for-children/program-of-the-year-award/",
+  },
+  {
+    name: "The Children's Trust Parent Club",
+    href: "https://www.thechildrenstrust.org/calendar/champions-for-children/program-of-the-year-award/",
+  },
 ];
 
 const impactStats = [
@@ -260,9 +273,14 @@ export default function LandingPage() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.18),transparent_28%),radial-gradient(circle_at_bottom,rgba(84,110,255,0.2),transparent_35%)]" />
 
           <div className="relative z-10 mx-auto max-w-5xl text-center">
-            <div className="inline-flex justify-center rounded-full border border-white/24 bg-white/14 px-4 py-2 text-center text-xs font-semibold uppercase tracking-[0.18em] whitespace-nowrap text-white/92 backdrop-blur-md md:px-5 md:text-sm md:tracking-[0.22em]">
+            <a
+              href="https://www.thechildrenstrust.org/calendar/champions-for-children/"
+              target="_blank"
+              rel="noreferrer"
+              className="hero-badge-glow inline-flex justify-center rounded-full border border-white/24 bg-white/14 px-4 py-2 text-center text-xs font-semibold uppercase tracking-[0.18em] whitespace-nowrap text-white/92 backdrop-blur-md transition hover:bg-white/18 md:px-5 md:text-sm md:tracking-[0.22em]"
+            >
               Champions for Children 2026
-            </div>
+            </a>
 
             <h1 className="mx-auto mt-6 max-w-4xl text-5xl font-black leading-[0.94] tracking-tight text-white md:text-7xl lg:text-[5.6rem]">
               Thank You,
@@ -279,19 +297,26 @@ export default function LandingPage() {
               {...cardMotion}
               className="mx-auto mt-10 max-w-4xl rounded-[36px] border border-white/26 bg-white/14 p-6 text-center shadow-[0_34px_90px_rgba(76,23,88,0.28)] backdrop-blur-xl md:p-8"
             >
-              <div className="mx-auto mt-6 max-w-[320px]">
-                <PortraitPlaceholder
-                  featured
-                  src={honorees[0].image}
-                  alt={honorees[0].name}
-                />
-              </div>
-              <h2 className="mt-6 text-3xl font-bold leading-tight text-white md:text-5xl">
-                {honorees[0].name}
-              </h2>
-              <p className="mx-auto mt-4 max-w-3xl text-xl leading-8 text-white/90 md:text-2xl md:leading-9">
-                {honorees[0].honor}
-              </p>
+              <a
+                href={honorees[0].href}
+                target="_blank"
+                rel="noreferrer"
+                className="block"
+              >
+                <div className="mx-auto mt-6 max-w-[320px]">
+                  <PortraitPlaceholder
+                    featured
+                    src={honorees[0].image}
+                    alt={honorees[0].name}
+                  />
+                </div>
+                <h2 className="mt-6 text-3xl font-bold leading-tight text-white md:text-5xl">
+                  {honorees[0].name}
+                </h2>
+                <p className="mx-auto mt-4 max-w-3xl text-xl leading-8 text-white/90 md:text-2xl md:leading-9">
+                  {honorees[0].honor}
+                </p>
+              </a>
             </motion.article>
 
             <div className="mt-6 grid gap-4 md:grid-cols-3">
@@ -302,15 +327,17 @@ export default function LandingPage() {
                   {...cardMotion}
                   className="rounded-[32px] border border-white/24 bg-white/14 p-6 text-center shadow-[0_24px_60px_rgba(67,31,99,0.22)] backdrop-blur-xl"
                 >
-                  <div className="mx-auto max-w-[280px]">
-                    <PortraitPlaceholder src={person.image} alt={person.name} />
-                  </div>
-                  <h3 className="mt-5 text-3xl font-bold leading-tight text-white">
-                    {person.name}
-                  </h3>
-                  <p className="mx-auto mt-3 max-w-[16rem] text-lg leading-8 text-white/82">
-                    {person.honor}
-                  </p>
+                  <a href={person.href} target="_blank" rel="noreferrer" className="block">
+                    <div className="mx-auto max-w-[280px]">
+                      <PortraitPlaceholder src={person.image} alt={person.name} />
+                    </div>
+                    <h3 className="mt-5 text-3xl font-bold leading-tight text-white">
+                      {person.name}
+                    </h3>
+                    <p className="mx-auto mt-3 max-w-[16rem] text-lg leading-8 text-white/82">
+                      {person.honor}
+                    </p>
+                  </a>
                 </motion.article>
               ))}
             </div>
@@ -334,9 +361,11 @@ export default function LandingPage() {
                   {...cardMotion}
                   className="rounded-[32px] border border-white/24 bg-white/14 p-6 text-center shadow-[0_24px_60px_rgba(67,31,99,0.22)] backdrop-blur-xl"
                   >
-                    <h3 className="mt-1 text-3xl font-bold leading-tight text-white">
-                      {program.name}
-                    </h3>
+                    <a href={program.href} target="_blank" rel="noreferrer" className="block">
+                      <h3 className="mt-1 text-3xl font-bold leading-tight text-white">
+                        {program.name}
+                      </h3>
+                    </a>
                   </motion.article>
                 ))}
               </div>
@@ -520,9 +549,14 @@ export default function LandingPage() {
 
       <footer className="mx-auto max-w-4xl px-6 pb-16 text-center">
         <motion.div {...reveal()} className="space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">
+          <a
+            href="https://welsfoundation.org/"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-block text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue transition hover:opacity-80"
+          >
             WELS Systems Foundation
-          </p>
+          </a>
           <p className="text-lg font-semibold text-slate-600">
             Thank you, Champions for Children 2026.
           </p>
