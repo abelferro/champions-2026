@@ -71,6 +71,12 @@ const honorees = [
   },
 ];
 
+const programTags = [
+  "Families First Program",
+  "Little SEALS Program",
+  "The Children's Trust Parent Club",
+];
+
 const portalHighlights = [
   {
     icon: UserRound,
@@ -131,6 +137,15 @@ const leadershipSignals = [
   },
 ];
 
+const getInitials = (name: string) =>
+  name
+    .split(" ")
+    .filter((part) => part.length > 0 && part.toLowerCase() !== "hon.")
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase();
+
 function Section({
   kicker,
   title,
@@ -181,43 +196,131 @@ export default function LandingPage() {
         </a>
       </header>
 
-      <section className="mx-auto grid max-w-7xl gap-10 px-6 pb-18 pt-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-        <motion.div {...reveal()} className="relative z-10">
-          <h1 className="mt-8 max-w-3xl text-5xl font-black leading-[0.98] tracking-tight text-brand-ink md:text-7xl">
-            Thank You,
-            <span className="gradient-text block">Champions.</span>
-          </h1>
+      <section className="mx-auto max-w-7xl px-6 pb-18 pt-6">
+        <motion.div
+          {...reveal()}
+          className="champions-hero relative overflow-hidden rounded-[42px] px-6 py-10 md:px-10 md:py-14 lg:px-14 lg:py-16"
+        >
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.16),transparent_28%),radial-gradient(circle_at_bottom,rgba(84,110,255,0.22),transparent_35%)]" />
 
-          <p className="mt-6 max-w-2xl text-xl leading-8 text-slate-700">
-            WELS helps early learning leaders turn recognition into momentum by
-            connecting educator data, professional growth, and workforce
-            support in one unified portal.
-          </p>
+          <div className="relative z-10 mx-auto max-w-5xl text-center">
+            <div className="inline-flex items-center gap-3 rounded-full border border-white/30 bg-white/14 px-5 py-2 text-sm font-extrabold uppercase tracking-[0.22em] text-white/90 backdrop-blur-md">
+              <Sparkles size={16} />
+              Champions for Children 2026
+            </div>
 
-          <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600">
-            This rebrand draws on the official WELS Champions experience:
-            empowering early childhood educators, surfacing career journey
-            tools, and spotlighting the people and programs moving children
-            forward.
-          </p>
+            <h1 className="mx-auto mt-6 max-w-4xl text-5xl font-black leading-[0.92] tracking-tight text-white md:text-7xl lg:text-[5.8rem]">
+              Thank You,
+              <span className="block text-white">Champions!</span>
+            </h1>
 
-          <div className="mt-8 flex flex-wrap gap-4">
-            <a
-              href="#experience"
-              className="inline-flex items-center gap-2 rounded-full bg-brand-blue px-6 py-3 text-sm font-bold text-white transition hover:bg-brand-ink"
-            >
-              Explore the portal
-              <ArrowRight size={18} />
-            </a>
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 rounded-full border border-brand-blue/20 bg-white/75 px-6 py-3 text-sm font-bold text-brand-ink transition hover:border-brand-blue hover:text-brand-blue"
-            >
-              Connect with WELS
-            </a>
+            <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-white/88 md:text-xl">
+              Celebrating the leaders, advocates, and programs moving children
+              forward with heart, visibility, and lasting impact.
+            </p>
+
+            <div className="mx-auto mt-10 max-w-4xl rounded-[36px] border border-white/28 bg-white/14 p-5 shadow-[0_32px_90px_rgba(76,23,88,0.28)] backdrop-blur-md md:p-7">
+              <div className="grid items-center gap-6 md:grid-cols-[240px_1fr] md:text-left">
+                <div className="flex flex-col items-center justify-center gap-4">
+                  <div className="hero-portrait hero-portrait-lg">
+                    <span>{getInitials(honorees[0].name)}</span>
+                  </div>
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/72">
+                    Portrait placeholder
+                  </p>
+                </div>
+
+                <div>
+                  <div className="inline-flex items-center gap-3 rounded-full border border-white/24 bg-white/14 px-4 py-2 text-sm font-bold uppercase tracking-[0.18em] text-white/88">
+                    <Award size={16} />
+                    Featured recognition
+                  </div>
+                  <h2 className="mt-5 text-4xl font-black leading-tight text-white md:text-5xl">
+                    {honorees[0].name}
+                  </h2>
+                  <p className="mt-4 text-xl leading-8 text-white/86">
+                    {honorees[0].honor}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 grid gap-4 md:grid-cols-3">
+              {honorees.slice(1).map((person, index) => (
+                <motion.div
+                  key={person.name}
+                  {...reveal(0.06 * (index + 1))}
+                  className="rounded-[32px] border border-white/24 bg-white/14 p-5 text-left shadow-[0_22px_60px_rgba(67,31,99,0.22)] backdrop-blur-md"
+                >
+                  <div className="hero-portrait">
+                    <span>{getInitials(person.name)}</span>
+                  </div>
+                  <p className="mt-5 text-2xl font-black leading-tight text-white">
+                    {person.name}
+                  </p>
+                  <p className="mt-3 text-base leading-7 text-white/82">
+                    {person.honor}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              {programTags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-white/24 bg-white/14 px-5 py-3 text-sm font-bold text-white shadow-[0_12px_30px_rgba(50,20,72,0.18)] backdrop-blur-md"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
+        </motion.div>
+      </section>
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-3">
+      <Section
+        kicker="Powered by WELS"
+        title="The platform behind the celebration keeps educator momentum moving."
+        description="WELS Exchange Hub turns recognition into action by connecting educator data, professional growth, and workforce support in one clearer experience."
+      >
+        <div className="grid gap-6 xl:grid-cols-[0.95fr_1.05fr]">
+          <motion.div {...reveal()} className="wels-card p-7 md:p-9">
+            <p className="text-sm font-extrabold uppercase tracking-[0.2em] text-brand-pink">
+              WELS Exchange Hub
+            </p>
+            <h3 className="mt-4 text-3xl font-black tracking-tight text-brand-ink">
+              Recognition works best when the system behind it is connected.
+            </h3>
+            <p className="mt-5 text-base leading-8 text-slate-600">
+              WELS helps early learning leaders connect educator milestones,
+              records, and next-step planning without losing the human story
+              behind each achievement.
+            </p>
+            <p className="mt-4 text-base leading-8 text-slate-600">
+              The Professional Portal supports that work by bringing career
+              journey tools, documentation, and visibility into one place for
+              educators, partners, and agencies.
+            </p>
+
+            <div className="mt-8 flex flex-wrap gap-4">
+              <a
+                href="#experience"
+                className="inline-flex items-center gap-2 rounded-full bg-brand-blue px-6 py-3 text-sm font-bold text-white transition hover:bg-brand-ink"
+              >
+                Explore the portal
+                <ArrowRight size={18} />
+              </a>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 rounded-full border border-brand-blue/20 bg-white/75 px-6 py-3 text-sm font-bold text-brand-ink transition hover:border-brand-blue hover:text-brand-blue"
+              >
+                Connect with WELS
+              </a>
+            </div>
+          </motion.div>
+
+          <div className="grid gap-4 sm:grid-cols-3">
             {impactStats.map((item, index) => (
               <motion.div
                 key={item.label}
@@ -234,79 +337,9 @@ export default function LandingPage() {
               </motion.div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div {...reveal(0.12)} className="relative">
-          <div className="wels-card relative overflow-hidden p-6 md:p-8">
-            <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-r from-brand-blue/10 via-brand-pink/18 to-brand-yellow/22" />
-            <div className="relative">
-              <div className="flex items-center gap-3 text-brand-blue">
-                <Sparkles size={18} />
-                <span className="text-sm font-bold uppercase tracking-[0.2em]">
-                  Honoree spotlight
-                </span>
-              </div>
-
-              <div className="mt-6 rounded-[28px] border border-white/70 bg-white/92 p-6 shadow-[0_24px_50px_rgba(50,108,252,0.12)]">
-                <div className="flex items-center gap-4">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-pink/12 text-brand-pink">
-                    <Award size={30} />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-pink">
-                      2026 featured recognition
-                    </p>
-                    <h3 className="mt-2 text-2xl font-black text-brand-ink">
-                      {honorees[0].name}
-                    </h3>
-                    <p className="mt-1 text-sm leading-6 text-slate-600">
-                      {honorees[0].honor}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-5 grid gap-4 sm:grid-cols-3">
-                {honorees.slice(1).map((person) => (
-                  <div
-                    key={person.name}
-                    className="rounded-[24px] border border-white/70 bg-white/80 p-5 shadow-[0_18px_40px_rgba(29,27,69,0.08)]"
-                  >
-                    <p className="text-lg font-black leading-tight text-brand-ink">
-                      {person.name}
-                    </p>
-                    <p className="mt-3 text-sm leading-6 text-slate-600">
-                      {person.honor}
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-5 flex flex-wrap gap-3">
-                {[
-                  "Families First Program",
-                  "Little SEALS Program",
-                  "The Children's Trust Parent Club",
-                ].map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-brand-pink/18 bg-brand-pink/8 px-4 py-2 text-sm font-semibold text-brand-ink"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </section>
-
-      <Section
-        kicker="Early Learning Data Matters"
-        title="Recognition works best when the system behind it is connected."
-        description="WELS Exchange Hub is designed to turn fragmented workflows into one clear experience for administrators, agencies, providers, educators, and families."
-      >
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="mt-6 grid gap-6 lg:grid-cols-3">
           {leadershipSignals.map(({ icon: Icon, title, description }, index) => (
             <motion.div
               key={title}
@@ -421,28 +454,43 @@ export default function LandingPage() {
       </section>
 
       <section id="contact" className="mx-auto max-w-7xl px-6 py-20">
-        <motion.div
-          {...reveal()}
-          className="wels-card grid gap-8 overflow-hidden p-8 md:grid-cols-[0.95fr_1.05fr] md:p-10"
-        >
-          <div>
-            <p className="section-kicker">Connect with WELS</p>
-            <h2 className="mt-4 text-3xl font-black tracking-tight text-brand-ink md:text-4xl">
-              Ready to see how WELS can support your goals?
-            </h2>
-            <p className="mt-5 text-base leading-8 text-slate-600">
-              WELS invites partners to continue the conversation with Mike
-              Cullen, Support Manager, for demonstrations, system questions, and
-              next-step planning.
-            </p>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+        <motion.div {...reveal()} className="mx-auto max-w-4xl text-center">
+          <p className="section-kicker">Connect with WELS</p>
+          <h2 className="mt-4 text-4xl font-black tracking-tight text-brand-ink md:text-5xl">
+            Let&apos;s keep the conversation going.
+          </h2>
+          <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+            If something in this story feels close to your work, fill out the
+            form below. Mike from WELS would love to hear what you&apos;re
+            building, what questions you have, and how the team can help.
+          </p>
+
+          <div className="mt-10 wels-card p-8 md:p-10">
+            <div className="flex flex-col items-center">
+              <img
+                src={mikeUrl}
+                alt="Mike from WELS"
+                className="h-28 w-28 rounded-[28px] object-cover shadow-[0_18px_40px_rgba(93,76,172,0.18)]"
+                loading="lazy"
+              />
+              <p className="mt-5 text-sm font-extrabold uppercase tracking-[0.22em] text-brand-blue">
+                Mike from WELS
+              </p>
+              <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-600">
+                Reach out if you want to talk through ideas, ask a question, or
+                simply share what your team is trying to make possible for
+                children and families. We&apos;ll meet you where you are.
+              </p>
+            </div>
+
+            <div className="mt-8 grid gap-4 text-left sm:grid-cols-2">
               <a
                 href="mailto:support@welsfoundation.org"
-                className="rounded-[24px] border border-brand-blue/12 bg-white/90 p-5 transition hover:border-brand-blue"
+                className="rounded-[24px] border border-brand-blue/12 bg-white/88 p-5 transition hover:border-brand-blue"
               >
                 <Mail className="text-brand-blue" size={22} />
                 <p className="mt-4 text-sm font-extrabold uppercase tracking-[0.18em] text-brand-pink">
-                  Say hi
+                  Email Mike
                 </p>
                 <p className="mt-2 text-lg font-black text-brand-ink">
                   support@welsfoundation.org
@@ -450,86 +498,44 @@ export default function LandingPage() {
               </a>
               <a
                 href="tel:7867350200"
-                className="rounded-[24px] border border-brand-blue/12 bg-white/90 p-5 transition hover:border-brand-blue"
+                className="rounded-[24px] border border-brand-blue/12 bg-white/88 p-5 transition hover:border-brand-blue"
               >
                 <Phone className="text-brand-blue" size={22} />
                 <p className="mt-4 text-sm font-extrabold uppercase tracking-[0.18em] text-brand-pink">
-                  Let&apos;s talk
+                  Call Mike
                 </p>
                 <p className="mt-2 text-lg font-black text-brand-ink">
                   786.735.0200
                 </p>
               </a>
             </div>
+
+            <p className="mx-auto mt-8 max-w-2xl text-base leading-7 text-slate-500">
+              The form is the easiest way to start. Share a few details and the
+              WELS team will follow up with care.
+            </p>
           </div>
 
-          <div className="space-y-6">
-            <div className="rounded-[30px] border border-white/70 bg-white/92 p-6 shadow-[0_26px_60px_rgba(29,27,69,0.10)]">
-              <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
-                <img
-                  src={mikeUrl}
-                  alt="Mike Cullen"
-                  className="h-28 w-28 rounded-[26px] object-cover"
-                  loading="lazy"
-                />
-                <div>
-                  <p className="text-sm font-extrabold uppercase tracking-[0.2em] text-brand-blue">
-                    Mike Cullen
-                  </p>
-                  <h3 className="mt-2 text-2xl font-black text-brand-ink">
-                    Support Manager
-                  </h3>
-                  <p className="mt-3 text-base leading-7 text-slate-600">
-                    A direct point of contact for scheduling demos, answering
-                    product questions, and helping partners understand which
-                    WELS tools fit their goals.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a
-                  href="https://welsfoundation.org/contact-us/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-brand-blue px-5 py-3 text-sm font-bold text-white transition hover:bg-brand-ink"
-                >
-                  Visit contact page
-                  <ArrowRight size={18} />
-                </a>
-                <a
-                  href="https://welsfoundation.org/the-wels-system/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-brand-blue/20 px-5 py-3 text-sm font-bold text-brand-ink transition hover:border-brand-blue hover:text-brand-blue"
-                >
-                  See the WELS system
-                </a>
-              </div>
-            </div>
-
+          <div className="mt-8 text-left">
             <MauticContactForm
-              formKicker="WELS contact form"
-              formTitle="Tell us about your goals."
+              formKicker="Start the conversation"
+              formTitle="Tell Mike a little about you."
               successKicker="Thanks for reaching out"
-              successTitle="We have your message."
-              successMessage="A WELS team member will follow up soon about your Champions and early learning goals."
+              successTitle="Mike has your note."
+              successMessage="Someone from WELS will follow up soon to continue the conversation with you."
             />
           </div>
         </motion.div>
       </section>
 
-      <footer className="mx-auto max-w-7xl px-6 pb-16">
-        <motion.div
-          {...reveal()}
-          className="flex flex-wrap items-center justify-center gap-3"
-        >
-          <span className="wels-outline bg-white/80 text-xs font-extrabold uppercase tracking-[0.22em] text-brand-blue">
+      <footer className="mx-auto max-w-4xl px-6 pb-16 text-center">
+        <motion.div {...reveal()} className="space-y-3">
+          <p className="text-sm font-extrabold uppercase tracking-[0.22em] text-brand-blue">
             WELS Systems Foundation
-          </span>
-          <span className="wels-outline bg-white/80 text-sm font-semibold text-slate-700">
-            Champions for Children 2026
-          </span>
+          </p>
+          <p className="text-lg font-semibold text-slate-600">
+            Thank you, Champions for Children 2026.
+          </p>
         </motion.div>
       </footer>
     </main>

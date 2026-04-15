@@ -20,9 +20,10 @@
     font-family: var(--font-sans);
     color: var(--color-brand-ink);
     background:
-      radial-gradient(circle at top right, rgba(255, 214, 0, 0.16), transparent 30%),
-      radial-gradient(circle at top left, rgba(228, 64, 129, 0.14), transparent 28%),
-      linear-gradient(180deg, #fff7fb 0%, #ffffff 42%, #f7fbff 100%);
+      radial-gradient(circle at top right, rgba(255, 214, 0, 0.18), transparent 30%),
+      radial-gradient(circle at top left, rgba(228, 64, 129, 0.16), transparent 28%),
+      radial-gradient(circle at bottom left, rgba(50, 108, 252, 0.1), transparent 24%),
+      linear-gradient(180deg, #fff8fa 0%, #ffffff 40%, #f7fbff 100%);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -72,5 +73,59 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+  }
+
+  .champions-hero {
+    background:
+      radial-gradient(circle at 14% 22%, rgba(255, 245, 112, 0.88), transparent 18%),
+      radial-gradient(circle at 80% 18%, rgba(83, 197, 255, 0.82), transparent 21%),
+      radial-gradient(circle at 20% 84%, rgba(98, 101, 255, 0.62), transparent 24%),
+      radial-gradient(circle at 86% 76%, rgba(182, 255, 129, 0.5), transparent 20%),
+      linear-gradient(140deg, #d86199 0%, #f08b6d 28%, #ef7779 51%, #c06ac7 74%, #7565ea 100%);
+    box-shadow: 0 34px 110px rgba(112, 51, 103, 0.22);
+  }
+
+  .champions-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.24), transparent 36%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 45%),
+      repeating-linear-gradient(
+        115deg,
+        rgba(255, 255, 255, 0.06) 0,
+        rgba(255, 255, 255, 0.06) 1px,
+        transparent 1px,
+        transparent 5px
+      );
+    opacity: 0.42;
+    pointer-events: none;
+  }
+
+  .hero-portrait {
+    display: flex;
+    height: 12rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 28px;
+    background:
+      radial-gradient(circle at top, rgba(255, 255, 255, 0.26), transparent 42%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.08));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .hero-portrait span {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.96);
+    text-shadow: 0 10px 25px rgba(77, 24, 91, 0.22);
+  }
+
+  .hero-portrait-lg {
+    height: 15rem;
+    border-radius: 34px;
   }
 }
