@@ -326,14 +326,14 @@ export default function MauticContactForm({
         <div className="p-5 md:p-8">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-brand-blue">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-blue">
               {formKicker}
             </p>
-            <h3 className="mt-3 text-3xl font-black tracking-tight text-brand-ink md:text-4xl">
+            <h3 className="mt-3 text-3xl font-bold tracking-tight text-brand-ink md:text-4xl">
               {formTitle}
             </h3>
           </div>
-          <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-slate-400">
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-400">
             Step {currentStep} of 3
           </p>
         </div>
@@ -350,7 +350,7 @@ export default function MauticContactForm({
               >
                 <div className="flex items-center gap-3">
                   <span
-                    className={`inline-flex h-11 w-11 items-center justify-center rounded-full border text-sm font-black transition ${
+                    className={`inline-flex h-11 w-11 items-center justify-center rounded-full border text-sm font-bold transition ${
                       isActive
                         ? "border-brand-ink bg-brand-ink text-white"
                         : isComplete
@@ -361,7 +361,7 @@ export default function MauticContactForm({
                   >
                     {isComplete ? <Check size={18} /> : step}
                   </span>
-                  <span className="hidden text-xs font-bold uppercase tracking-[0.16em] text-slate-400 md:inline">
+                  <span className="hidden text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 md:inline">
                     {stepContent[step].label}
                   </span>
                 </div>
@@ -405,7 +405,7 @@ export default function MauticContactForm({
                   className="grid content-start gap-4 md:grid-cols-2"
                 >
                   <div>
-                    <label className="mb-2 block text-sm font-extrabold text-brand-ink">
+                    <label className="mb-2 block text-sm font-semibold text-brand-ink">
                       First Name
                     </label>
                     <input
@@ -432,7 +432,7 @@ export default function MauticContactForm({
                   </div>
 
                   <div>
-                    <label className="mb-2 block text-sm font-extrabold text-brand-ink">
+                    <label className="mb-2 block text-sm font-semibold text-brand-ink">
                       Last Name
                     </label>
                     <input
@@ -450,7 +450,7 @@ export default function MauticContactForm({
                   </div>
 
                   <div className="md:col-span-2">
-                    <label className="mb-2 block text-sm font-extrabold text-brand-ink">
+                    <label className="mb-2 block text-sm font-semibold text-brand-ink">
                       Email
                     </label>
                     <input
@@ -487,7 +487,7 @@ export default function MauticContactForm({
                   className="grid content-start gap-4 md:grid-cols-2"
                 >
                   <div className="md:col-span-2">
-                    <label className="mb-2 block text-sm font-extrabold text-brand-ink">
+                    <label className="mb-2 block text-sm font-semibold text-brand-ink">
                       Organization
                     </label>
                     <input
@@ -514,7 +514,7 @@ export default function MauticContactForm({
                   </div>
 
                   <div>
-                    <label className="mb-2 block text-sm font-extrabold text-brand-ink">
+                    <label className="mb-2 block text-sm font-semibold text-brand-ink">
                       Role
                     </label>
                     <div className="relative">
@@ -541,7 +541,7 @@ export default function MauticContactForm({
                   </div>
 
                   <div>
-                    <label className="mb-2 block text-sm font-extrabold text-brand-ink">
+                    <label className="mb-2 block text-sm font-semibold text-brand-ink">
                       Phone
                     </label>
                     <div className="relative">
@@ -578,7 +578,7 @@ export default function MauticContactForm({
                 >
                   <fieldset>
                     <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                      <legend className="text-sm font-extrabold text-brand-ink">
+                      <legend className="text-sm font-semibold text-brand-ink">
                         Interests
                       </legend>
                       <p className="text-sm text-slate-500">
@@ -616,7 +616,7 @@ export default function MauticContactForm({
                                 </div>
 
                                 <div className="min-w-0 flex-1">
-                                  <p className="text-base font-black leading-tight text-brand-ink">
+                                  <p className="text-base font-bold leading-tight text-brand-ink">
                                     {option.label}
                                   </p>
                                   <p className="mt-1 text-sm leading-6 text-slate-500">
@@ -663,7 +663,7 @@ export default function MauticContactForm({
                     <button
                       type="button"
                       onClick={() => setShowMessageField((current) => !current)}
-                      className="flex min-h-[52px] w-full items-center justify-between gap-3 px-4 text-left text-sm font-bold text-brand-ink"
+                      className="flex min-h-[52px] w-full items-center justify-between gap-3 px-4 text-left text-sm font-semibold text-brand-ink"
                       aria-expanded={showMessageField}
                     >
                       <span>Add more details (optional)</span>
@@ -722,7 +722,7 @@ export default function MauticContactForm({
                 <button
                   type="button"
                   onClick={() => handlePrevious((currentStep - 1) as 1 | 2)}
-                  className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full border border-slate-200 px-5 text-sm font-bold text-slate-600 transition hover:border-slate-300 hover:bg-slate-50"
+                  className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full border border-slate-200 px-5 text-sm font-semibold text-slate-600 transition hover:border-slate-300 hover:bg-slate-50"
                 >
                   <ChevronLeft size={16} />
                   Back
@@ -733,7 +733,7 @@ export default function MauticContactForm({
                 <button
                   type="button"
                   onClick={() => handleNext((currentStep + 1) as 2 | 3)}
-                  className="gradient-shift-button inline-flex min-h-[52px] items-center justify-center rounded-full px-6 text-sm font-bold text-white shadow-[0_18px_34px_rgba(50,108,252,0.18)]"
+                  className="gradient-shift-button inline-flex min-h-[52px] items-center justify-center rounded-full px-6 text-sm font-semibold text-white shadow-[0_18px_34px_rgba(50,108,252,0.18)]"
                   style={{ backgroundImage: buttonGradient }}
                 >
                   Continue
@@ -742,7 +742,7 @@ export default function MauticContactForm({
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="gradient-shift-button inline-flex min-h-[52px] items-center justify-center rounded-full px-6 text-sm font-bold text-white shadow-[0_18px_34px_rgba(50,108,252,0.18)] disabled:cursor-not-allowed disabled:opacity-60"
+                  className="gradient-shift-button inline-flex min-h-[52px] items-center justify-center rounded-full px-6 text-sm font-semibold text-white shadow-[0_18px_34px_rgba(50,108,252,0.18)] disabled:cursor-not-allowed disabled:opacity-60"
                   style={{ backgroundImage: buttonGradient }}
                 >
                   {isSubmitting ? "Submitting..." : "Submit"}
@@ -777,10 +777,10 @@ export default function MauticContactForm({
               <CheckCircle2 size={28} />
             </div>
 
-            <p className="mt-6 text-sm font-extrabold uppercase tracking-[0.18em] text-brand-blue">
+            <p className="mt-6 text-sm font-semibold uppercase tracking-[0.18em] text-brand-blue">
               {successKicker}
             </p>
-            <h3 className="mx-auto mt-3 max-w-[12ch] text-4xl font-black tracking-tight text-brand-ink md:text-5xl">
+            <h3 className="mx-auto mt-3 max-w-[12ch] text-4xl font-bold tracking-tight text-brand-ink md:text-5xl">
               {successTitle}
             </h3>
             <p className="mx-auto mt-5 max-w-[32ch] text-lg leading-8 text-slate-600">
@@ -795,7 +795,7 @@ export default function MauticContactForm({
               <button
                 type="button"
                 onClick={() => setShowSuccess(false)}
-                className="gradient-shift-button inline-flex min-h-[54px] items-center justify-center rounded-full px-8 text-sm font-bold text-white shadow-[0_18px_34px_rgba(50,108,252,0.18)]"
+                className="gradient-shift-button inline-flex min-h-[54px] items-center justify-center rounded-full px-8 text-sm font-semibold text-white shadow-[0_18px_34px_rgba(50,108,252,0.18)]"
                 style={{ backgroundImage: buttonGradient }}
               >
                 Done

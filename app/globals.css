@@ -70,7 +70,9 @@
 
   .champions-hero {
     background:
-      radial-gradient(circle at 14% 22%, rgba(255, 245, 112, 0.88), transparent 18%),
+      radial-gradient(circle at 8% 8%, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.76) 18%, transparent 42%),
+      radial-gradient(circle at 18% 18%, rgba(255, 247, 229, 0.92), transparent 26%),
+      radial-gradient(circle at 14% 22%, rgba(255, 235, 166, 0.5), transparent 18%),
       radial-gradient(circle at 80% 18%, rgba(83, 197, 255, 0.82), transparent 21%),
       radial-gradient(circle at 20% 84%, rgba(98, 101, 255, 0.62), transparent 24%),
       radial-gradient(circle at 86% 76%, rgba(182, 255, 129, 0.5), transparent 20%),
@@ -83,8 +85,9 @@
     position: absolute;
     inset: 0;
     background:
+      radial-gradient(circle at 7% 9%, rgba(255, 255, 255, 0.78), transparent 24%),
       radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.24), transparent 36%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 45%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent 45%),
       repeating-linear-gradient(
         115deg,
         rgba(255, 255, 255, 0.06) 0,

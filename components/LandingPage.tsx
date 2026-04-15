@@ -186,7 +186,7 @@ function Section({
         className={centered ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}
       >
         <p className="section-kicker">{kicker}</p>
-        <h2 className="mt-4 text-4xl font-black tracking-tight text-brand-ink md:text-5xl">
+        <h2 className="mt-4 text-4xl font-bold tracking-tight text-brand-ink md:text-5xl">
           {title}
         </h2>
         <p className="mt-5 text-lg leading-8 text-slate-600">{description}</p>
@@ -239,21 +239,21 @@ export default function LandingPage() {
         </a>
         <a
           href="#contact"
-          className="wels-outline hidden text-sm font-bold text-brand-ink md:inline-flex"
+          className="wels-outline hidden text-sm font-semibold text-brand-ink md:inline-flex"
         >
           Start a conversation
         </a>
       </header>
 
-      <section className="mx-auto max-w-7xl px-6 pb-14 pt-4 md:pb-18">
+      <section className="w-full px-0 pb-14 pt-4 md:mx-auto md:max-w-7xl md:px-6 md:pb-18">
         <motion.div
           {...reveal()}
-          className="champions-hero relative overflow-hidden rounded-[40px] px-6 py-10 md:px-10 md:py-14 lg:px-14 lg:py-16"
+          className="champions-hero relative overflow-hidden rounded-none px-6 py-10 md:rounded-[40px] md:px-10 md:py-14 lg:px-14 lg:py-16"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.18),transparent_28%),radial-gradient(circle_at_bottom,rgba(84,110,255,0.2),transparent_35%)]" />
 
           <div className="relative z-10 mx-auto max-w-5xl text-center">
-            <div className="inline-flex items-center gap-3 rounded-full border border-white/24 bg-white/14 px-5 py-2 text-sm font-extrabold uppercase tracking-[0.22em] text-white/92 backdrop-blur-md">
+            <div className="inline-flex items-center gap-3 rounded-full border border-white/24 bg-white/14 px-5 py-2 text-sm font-semibold uppercase tracking-[0.22em] text-white/92 backdrop-blur-md">
               <Sparkles size={16} />
               Champions for Children 2026
             </div>
@@ -264,20 +264,15 @@ export default function LandingPage() {
             </h1>
 
             <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-white/88 md:text-xl">
-              As a proud sponsor of Champions for Children 2026, WELS is
-              honored to celebrate the people and programs who share our
-              commitment to the care and development of children ages 0–5.
-            </p>
-
-            <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-white/76 md:text-lg">
-              Thank you for the work you do every day for young children, their
-              families, and the communities around them.
+              WELS is proud to sponsor Champions for Children 2026 and celebrate
+              the people and programs caring for young children and helping them
+              grow.
             </p>
 
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <a
                 href="#system"
-                className="gradient-shift-button inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-white shadow-[0_18px_36px_rgba(50,108,252,0.2)]"
+                className="gradient-shift-button inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white shadow-[0_18px_36px_rgba(50,108,252,0.2)]"
                 style={{ backgroundImage: buttonGradient }}
               >
                 See how WELS supports this mission
@@ -285,7 +280,7 @@ export default function LandingPage() {
               </a>
               <a
                 href="#contact"
-                className="wels-outline border-white/26 bg-white/10 text-sm font-bold text-white"
+                className="wels-outline border-white/26 bg-white/10 text-sm font-semibold text-white"
               >
                 Start the conversation
               </a>
@@ -295,14 +290,14 @@ export default function LandingPage() {
               {...cardMotion}
               className="mx-auto mt-10 max-w-4xl rounded-[36px] border border-white/26 bg-white/14 p-6 text-center shadow-[0_34px_90px_rgba(76,23,88,0.28)] backdrop-blur-xl md:p-8"
             >
-              <div className="inline-flex items-center gap-3 rounded-full border border-white/22 bg-white/10 px-4 py-2 text-sm font-bold uppercase tracking-[0.18em] text-white/88">
+              <div className="inline-flex items-center gap-3 rounded-full border border-white/22 bg-white/10 px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em] text-white/88">
                 <Award size={16} />
                 Featured recognition
               </div>
               <div className="mx-auto mt-6 max-w-[320px]">
                 <PortraitPlaceholder featured />
               </div>
-              <h2 className="mt-6 text-4xl font-black leading-tight text-white md:text-6xl">
+              <h2 className="mt-6 text-4xl font-bold leading-tight text-white md:text-6xl">
                 {honorees[0].name}
               </h2>
               <p className="mx-auto mt-4 max-w-3xl text-xl leading-8 text-white/90 md:text-2xl md:leading-9">
@@ -316,18 +311,18 @@ export default function LandingPage() {
                   key={person.name}
                   {...reveal(index * 0.06)}
                   {...cardMotion}
-                  className="rounded-[32px] border border-white/24 bg-white/14 p-6 text-left shadow-[0_24px_60px_rgba(67,31,99,0.22)] backdrop-blur-xl"
+                  className="rounded-[32px] border border-white/24 bg-white/14 p-6 text-center shadow-[0_24px_60px_rgba(67,31,99,0.22)] backdrop-blur-xl"
                 >
                   <div className="rounded-[28px] border border-white/60 bg-white/10 p-4">
                     <PortraitPlaceholder />
                   </div>
-                  <p className="mt-5 text-xs font-extrabold uppercase tracking-[0.2em] text-white/70">
+                  <p className="mt-5 text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
                     Honoree
                   </p>
-                  <h3 className="mt-3 text-3xl font-black leading-tight text-white">
+                  <h3 className="mt-3 text-3xl font-bold leading-tight text-white">
                     {person.name}
                   </h3>
-                  <p className="mt-3 text-lg leading-8 text-white/82">
+                  <p className="mx-auto mt-3 max-w-[16rem] text-lg leading-8 text-white/82">
                     {person.honor}
                   </p>
                 </motion.article>
@@ -336,7 +331,7 @@ export default function LandingPage() {
 
             <div className="mt-10">
               <div className="text-center">
-                <p className="text-sm font-extrabold uppercase tracking-[0.24em] text-white/76">
+                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-white/76">
                   Programs of the Year
                 </p>
                 <p className="mx-auto mt-3 max-w-2xl text-lg leading-8 text-white/82">
@@ -356,10 +351,10 @@ export default function LandingPage() {
                     <div className="rounded-[28px] border border-white/60 bg-white/10 p-5">
                       <LogoPlaceholder />
                     </div>
-                    <p className="mt-5 text-xs font-extrabold uppercase tracking-[0.2em] text-white/70">
+                    <p className="mt-5 text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
                       Program Honoree
                     </p>
-                    <h3 className="mt-3 text-3xl font-black leading-tight text-white">
+                    <h3 className="mt-3 text-3xl font-bold leading-tight text-white">
                       {program.name}
                     </h3>
                   </motion.article>
@@ -370,99 +365,99 @@ export default function LandingPage() {
         </motion.div>
       </section>
 
-      <Section
-        id="system"
-        kicker="Sponsored by WELS"
-        title="Our mission is connected to theirs."
-        description="WELS supports the care and development of children ages 0–5 by helping the people, programs, and systems around them stay connected."
-      >
-        <div className="grid gap-6 xl:grid-cols-[0.9fr_1.1fr]">
-          <motion.div {...reveal()} className="wels-card p-8 md:p-9">
-            <div className="space-y-4">
-              {systemBenefits.map((benefit) => (
-                <div key={benefit} className="flex items-start gap-3">
-                  <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-brand-pink" />
-                  <p className="text-base leading-7 text-slate-600">{benefit}</p>
-                </div>
-              ))}
+      <section id="system" className="mx-auto max-w-7xl px-6 py-16 md:py-20">
+        <div className="grid gap-6 lg:grid-cols-[1fr_0.92fr] lg:items-center">
+          <motion.div {...reveal()} className="max-w-2xl">
+            <p className="section-kicker">
+              Proud Sponsor of Champions for Children 2026
+            </p>
+            <h2 className="mt-4 text-4xl font-bold tracking-tight text-brand-ink md:text-5xl">
+              Behind every champion, there&apos;s a system that supports them.
+            </h2>
+            <p className="mt-5 max-w-xl text-lg leading-8 text-slate-600">
+              WELS supports the care and development of children ages 0–5 by
+              helping the people, programs, and systems around them stay
+              connected.
+            </p>
+
+            <div className="mt-7 rounded-[28px] border border-slate-200 bg-white/82 p-5 shadow-[0_20px_50px_rgba(15,23,42,0.06)] backdrop-blur-sm md:p-6">
+              <div className="space-y-4">
+                {systemBenefits.map((benefit) => (
+                  <div key={benefit} className="flex items-start gap-3">
+                    <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-brand-blue" />
+                    <p className="text-base leading-7 text-slate-600">{benefit}</p>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-7">
               <a
                 href="#journey"
-                className="gradient-shift-button inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-white shadow-[0_18px_36px_rgba(50,108,252,0.18)]"
+                className="gradient-shift-button inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white shadow-[0_18px_36px_rgba(50,108,252,0.18)]"
                 style={{ backgroundImage: buttonGradient }}
               >
-                See how WELS works
+                Explore the system behind the impact
                 <ArrowRight size={18} />
-              </a>
-              <a
-                href="#contact"
-                className="inline-flex items-center rounded-full border border-brand-blue/16 bg-white/75 px-6 py-3 text-sm font-bold text-brand-ink transition hover:border-brand-blue hover:text-brand-blue"
-              >
-                Talk with WELS
               </a>
             </div>
           </motion.div>
 
-          <div className="grid gap-4 sm:grid-cols-3">
-            {impactStats.map((item, index) => (
-              <motion.div
-                key={item.label}
-                {...reveal(index * 0.08)}
-                {...cardMotion}
-                className="wels-card interactive-panel p-5"
-              >
-                <div className="h-1.5 w-16 rounded-full bg-[linear-gradient(90deg,#326cfc_0%,#e44081_100%)]" />
-                <p className="mt-5 text-4xl font-black tracking-tight text-brand-ink">
-                  {item.value}
-                </p>
-                <p className="mt-2 text-sm font-bold uppercase tracking-[0.16em] text-brand-pink">
-                  {item.label}
-                </p>
-                <p className="mt-3 text-sm leading-6 text-slate-600">
-                  {item.detail}
-                </p>
-              </motion.div>
-            ))}
-          </div>
+          <motion.div
+            {...reveal(0.08)}
+            className="rounded-[32px] border border-slate-200 bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(248,250,252,0.96))] p-5 shadow-[0_28px_80px_rgba(15,23,42,0.08)] md:p-6"
+          >
+            <div className="rounded-[26px] border border-slate-200 bg-white p-5 md:p-6">
+              <div className="flex items-center gap-3">
+                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-blue/10 text-brand-blue">
+                  <LayoutDashboard size={20} />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-blue">
+                    Connected support
+                  </p>
+                  <p className="mt-1 text-base leading-7 text-slate-600">
+                    One clearer view across workforce, programs, and progress.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                {impactStats.map((item, index) => (
+                  <motion.div
+                    key={item.label}
+                    {...reveal(index * 0.05)}
+                    className="rounded-[22px] border border-slate-200 bg-slate-50/90 p-4"
+                  >
+                    <p className="text-3xl font-bold tracking-tight text-brand-ink">
+                      {item.value}
+                    </p>
+                    <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                      {item.label}
+                    </p>
+                    <p className="mt-3 text-sm leading-6 text-slate-600">
+                      {item.detail}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </div>
-      </Section>
+      </section>
 
       <Section
-        id="journey"
-        kicker="How WELS Supports Your Journey"
-        title="One connected experience for educators, partners, and teams."
-        description="WELS brings profile, training, workforce visibility, and shared support into one clearer journey."
+        id="connected-portals"
+        kicker="Connected Portals"
+        title="Built for every part of the ecosystem."
+        description="WELS works as the system connecting agencies, providers, educators, and families so the work around each child can move with more clarity."
       >
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {portalHighlights.map(({ icon: Icon, title, description }, index) => (
-            <motion.article
-              key={title}
-              {...reveal(index * 0.05)}
-              {...cardMotion}
-              className="wels-card interactive-panel p-6"
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-blue/10 text-brand-blue">
-                <Icon size={22} />
-              </div>
-              <h3 className="mt-4 text-xl font-black text-brand-ink">{title}</h3>
-              <p className="mt-2 text-sm leading-7 text-slate-600">
-                {description}
-              </p>
-            </motion.article>
-          ))}
-        </div>
-
-        <div className="mt-10 grid gap-6 lg:grid-cols-[0.82fr_1.18fr]">
+        <div className="grid gap-6 lg:grid-cols-[0.82fr_1.18fr]">
           <motion.div {...reveal()} className="wels-card p-8 md:p-9">
-            <p className="section-kicker">Connected Portals</p>
-            <h3 className="mt-4 text-3xl font-black tracking-tight text-brand-ink">
-              Built for every part of the ecosystem.
-            </h3>
-            <p className="mt-5 text-base leading-8 text-slate-600">
-              WELS supports the people around each educator journey, not just
-              the records inside it.
+            <p className="text-base leading-8 text-slate-600">
+              This is the shared layer behind the day-to-day work: one place
+              for visibility, next steps, reporting, and support across the
+              full network.
             </p>
 
             <div className="mt-6 rounded-[28px] border border-brand-blue/10 bg-[linear-gradient(180deg,rgba(50,108,252,0.06),rgba(228,64,129,0.04))] p-5">
@@ -475,7 +470,7 @@ export default function LandingPage() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="rounded-[18px] border border-white/80 bg-white/82 px-4 py-3 text-sm font-bold text-brand-ink"
+                    className="rounded-[18px] border border-white/80 bg-white/82 px-4 py-3 text-sm font-semibold text-brand-ink"
                   >
                     {item}
                   </div>
@@ -495,7 +490,7 @@ export default function LandingPage() {
                 <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-pink/10 text-brand-pink">
                   <Icon size={20} />
                 </div>
-                <h3 className="mt-4 text-lg font-black text-brand-ink">{title}</h3>
+                <h3 className="mt-4 text-lg font-bold text-brand-ink">{title}</h3>
                 <p className="mt-2 text-sm leading-6 text-slate-600">
                   {description}
                 </p>
@@ -505,19 +500,43 @@ export default function LandingPage() {
         </div>
       </Section>
 
-      <section id="contact" className="mx-auto max-w-5xl px-6 py-16 md:py-20">
-        <motion.div {...reveal()} className="mx-auto max-w-4xl text-center">
+      <Section
+        id="journey"
+        kicker="How WELS Supports Your Journey"
+        title="One connected experience for educators, partners, and teams."
+        description="For educators, WELS brings profile details, training, employment history, and career momentum into one clearer journey."
+      >
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {portalHighlights.map(({ icon: Icon, title, description }, index) => (
+            <motion.article
+              key={title}
+              {...reveal(index * 0.05)}
+              {...cardMotion}
+              className="wels-card interactive-panel p-6"
+            >
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-blue/10 text-brand-blue">
+                <Icon size={22} />
+              </div>
+              <h3 className="mt-4 text-xl font-bold text-brand-ink">{title}</h3>
+              <p className="mt-2 text-sm leading-7 text-slate-600">
+                {description}
+              </p>
+            </motion.article>
+          ))}
+        </div>
+      </Section>
+
+      <section id="contact" className="w-full px-0 py-16 md:mx-auto md:max-w-5xl md:px-6 md:py-20">
+        <motion.div {...reveal()} className="mx-auto max-w-4xl px-6 text-center md:px-0">
           <p className="section-kicker">Start the Conversation</p>
-          <h2 className="mt-4 text-4xl font-black tracking-tight text-brand-ink md:text-5xl">
-            Tell us a bit about you and we&apos;ll connect you to the right next
-            step.
+          <h2 className="mt-4 text-4xl font-bold tracking-tight text-brand-ink md:text-5xl">
+            Tell us a little about you.
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">
-            Mike from WELS and the team will follow up with the conversation
-            that best fits your goals.
+            We&apos;ll follow up with the right next step for you and your team.
           </p>
 
-          <div className="mt-8 wels-card flex flex-col gap-5 p-6 text-left md:flex-row md:items-center md:justify-between md:p-7">
+          <div className="mt-8 wels-card flex flex-col gap-5 rounded-none p-6 text-left md:rounded-[32px] md:flex-row md:items-center md:justify-between md:p-7">
             <div className="flex items-center gap-4">
               <img
                 src={mikeUrl}
@@ -526,11 +545,11 @@ export default function LandingPage() {
                 loading="lazy"
               />
               <div>
-                <p className="text-sm font-extrabold uppercase tracking-[0.22em] text-brand-blue">
+                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">
                   Mike from WELS
                 </p>
                 <p className="mt-2 max-w-xl text-base leading-7 text-slate-600">
-                  A quick note is enough to get started.
+                  A quick note is all it takes.
                 </p>
               </div>
             </div>
@@ -538,14 +557,14 @@ export default function LandingPage() {
             <div className="grid gap-3 sm:grid-cols-2 md:min-w-[360px]">
               <a
                 href="mailto:support@welsfoundation.org"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-brand-blue/14 bg-white/80 px-4 py-3 text-sm font-bold text-brand-ink transition hover:border-brand-blue hover:text-brand-blue"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-brand-blue/14 bg-white/80 px-4 py-3 text-sm font-semibold text-brand-ink transition hover:border-brand-blue hover:text-brand-blue"
               >
                 <Mail size={16} />
                 support@welsfoundation.org
               </a>
               <a
                 href="tel:7867350200"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-brand-blue/14 bg-white/80 px-4 py-3 text-sm font-bold text-brand-ink transition hover:border-brand-blue hover:text-brand-blue"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-brand-blue/14 bg-white/80 px-4 py-3 text-sm font-semibold text-brand-ink transition hover:border-brand-blue hover:text-brand-blue"
               >
                 <Phone size={16} />
                 786.735.0200
@@ -556,7 +575,7 @@ export default function LandingPage() {
           <div className="mt-8 text-left">
             <MauticContactForm
               formKicker="Start the conversation"
-              formTitle="Tell us a bit about you and we'll connect you to the right next step."
+              formTitle="Tell us a little about you."
               successKicker="Thanks for reaching out"
               successTitle="You're all set."
               successMessage="Mike from WELS and our team will contact you soon with the right next step."
@@ -567,7 +586,7 @@ export default function LandingPage() {
 
       <footer className="mx-auto max-w-4xl px-6 pb-16 text-center">
         <motion.div {...reveal()} className="space-y-3">
-          <p className="text-sm font-extrabold uppercase tracking-[0.22em] text-brand-blue">
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">
             WELS Systems Foundation
           </p>
           <p className="text-lg font-semibold text-slate-600">
