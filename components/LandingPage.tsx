@@ -361,26 +361,6 @@ export default function LandingPage() {
               helping the people, programs, and systems around them stay
               connected.
             </p>
-
-            <div className="mt-7 space-y-4">
-              {systemBenefits.map((benefit) => (
-                <div key={benefit} className="flex items-start gap-3">
-                  <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-brand-blue" />
-                  <p className="text-base leading-7 text-slate-600">{benefit}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-7">
-              <a
-                href="#journey"
-                className="gradient-shift-button inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white shadow-[0_18px_36px_rgba(50,108,252,0.18)]"
-                style={{ backgroundImage: buttonGradient }}
-              >
-                Explore the system behind the impact
-                <ArrowRight size={18} />
-              </a>
-            </div>
           </motion.div>
 
           <motion.div
@@ -393,10 +373,10 @@ export default function LandingPage() {
               </div>
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-blue">
-                  Connected support
+                  What that support makes possible
                 </p>
                 <p className="mt-1 max-w-md text-base leading-7 text-slate-600">
-                  One clearer view across workforce, programs, reporting, and progress.
+                  Practical ways WELS helps people and programs stay aligned.
                 </p>
               </div>
             </div>
@@ -439,6 +419,17 @@ export default function LandingPage() {
             );
           })}
         </div>
+
+        <div className="mt-8 flex justify-center">
+          <a
+            href="#journey"
+            className="gradient-shift-button inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white shadow-[0_18px_36px_rgba(50,108,252,0.18)]"
+            style={{ backgroundImage: buttonGradient }}
+          >
+            Explore the system behind the impact
+            <ArrowRight size={18} />
+          </a>
+        </div>
       </section>
 
       <Section
@@ -447,51 +438,23 @@ export default function LandingPage() {
         title="Built for every part of the ecosystem."
         description="WELS works as the system connecting agencies, providers, educators, and families so the work around each child can move with more clarity."
       >
-        <div className="grid gap-6 lg:grid-cols-[0.82fr_1.18fr]">
-          <motion.div {...reveal()} className="wels-card p-8 md:p-9">
-            <p className="text-base leading-8 text-slate-600">
-              This is the shared layer behind the day-to-day work: one place
-              for visibility, next steps, reporting, and support across the
-              full network.
-            </p>
-
-            <div className="mt-6 rounded-[28px] border border-brand-blue/10 bg-[linear-gradient(180deg,rgba(50,108,252,0.06),rgba(228,64,129,0.04))] p-5">
-              <div className="grid gap-3 sm:grid-cols-2">
-                {[
-                  "Shared visibility",
-                  "Clearer next steps",
-                  "Connected reporting",
-                  "Less friction",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-[18px] border border-white/80 bg-white/82 px-4 py-3 text-sm font-semibold text-brand-ink"
-                  >
-                    {item}
-                  </div>
-                ))}
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {partnershipTiles.map(({ icon: Icon, title, description }, index) => (
+            <motion.article
+              key={title}
+              {...reveal(index * 0.05)}
+              {...cardMotion}
+              className="wels-card interactive-panel p-5"
+            >
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-pink/10 text-brand-pink">
+                <Icon size={20} />
               </div>
-            </div>
-          </motion.div>
-
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {partnershipTiles.map(({ icon: Icon, title, description }, index) => (
-              <motion.article
-                key={title}
-                {...reveal(index * 0.05)}
-                {...cardMotion}
-                className="wels-card interactive-panel p-5"
-              >
-                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-pink/10 text-brand-pink">
-                  <Icon size={20} />
-                </div>
-                <h3 className="mt-4 text-lg font-bold text-brand-ink">{title}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600">
-                  {description}
-                </p>
-              </motion.article>
-            ))}
-          </div>
+              <h3 className="mt-4 text-lg font-bold text-brand-ink">{title}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">
+                {description}
+              </p>
+            </motion.article>
+          ))}
         </div>
       </Section>
 
