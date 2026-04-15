@@ -137,7 +137,7 @@ export default function MauticContactForm({
 
   const accentGradient = useMemo(
     () =>
-      "linear-gradient(90deg, var(--color-brand-blue, #326cfc) 0%, var(--color-brand-pink, #eb4d8f) 62%, var(--color-brand-yellow, var(--color-brand-pink, #eb4d8f)) 100%)",
+      "linear-gradient(90deg, var(--color-brand-blue, #326cfc) 0%, var(--color-brand-pink, #eb4d8f) 50%, var(--color-brand-blue, #326cfc) 100%)",
     [],
   );
 
@@ -657,8 +657,8 @@ export default function MauticContactForm({
               <button
                 type="button"
                 onClick={() => handleNext((currentStep + 1) as 2 | 3)}
-                className="inline-flex min-h-[72px] flex-1 items-center justify-center rounded-[22px] px-6 text-xl font-black text-white shadow-[0_18px_34px_rgba(50,108,252,0.18)] transition hover:-translate-y-px"
-                style={{ background: accentGradient }}
+                className="gradient-shift-button inline-flex min-h-[72px] flex-1 items-center justify-center rounded-[22px] px-6 text-xl font-black text-white shadow-[0_18px_34px_rgba(50,108,252,0.18)] transition hover:-translate-y-px"
+                style={{ backgroundImage: accentGradient }}
               >
                 Continue
               </button>
@@ -666,8 +666,8 @@ export default function MauticContactForm({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex min-h-[72px] flex-1 items-center justify-center rounded-[22px] px-6 text-xl font-black text-white shadow-[0_18px_34px_rgba(50,108,252,0.18)] transition hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-60 disabled:transform-none"
-                style={{ background: accentGradient }}
+                className="gradient-shift-button inline-flex min-h-[72px] flex-1 items-center justify-center rounded-[22px] px-6 text-xl font-black text-white shadow-[0_18px_34px_rgba(50,108,252,0.18)] transition hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-60 disabled:transform-none"
+                style={{ backgroundImage: accentGradient }}
               >
                 {isSubmitting ? "Submitting..." : "Submit"}
               </button>
@@ -720,8 +720,8 @@ export default function MauticContactForm({
               <button
                 type="button"
                 onClick={() => setShowSuccess(false)}
-                className="inline-flex min-h-[62px] items-center justify-center rounded-[20px] px-8 text-lg font-black text-white shadow-[0_18px_34px_rgba(50,108,252,0.18)] transition hover:-translate-y-px"
-                style={{ background: accentGradient }}
+                className="gradient-shift-button inline-flex min-h-[62px] items-center justify-center rounded-[20px] px-8 text-lg font-black text-white shadow-[0_18px_34px_rgba(50,108,252,0.18)] transition hover:-translate-y-px"
+                style={{ backgroundImage: accentGradient }}
               >
                 Done
               </button>

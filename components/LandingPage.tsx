@@ -71,10 +71,19 @@ const honorees = [
   },
 ];
 
-const programTags = [
-  "Families First Program",
-  "Little SEALS Program",
-  "The Children's Trust Parent Club",
+const programsOfTheYear = [
+  {
+    name: "Families First Program",
+    monogram: "FF",
+  },
+  {
+    name: "Little SEALS Program",
+    monogram: "LS",
+  },
+  {
+    name: "The Children's Trust Parent Club",
+    monogram: "PC",
+  },
 ];
 
 const portalHighlights = [
@@ -219,10 +228,14 @@ export default function LandingPage() {
               forward with heart, visibility, and lasting impact.
             </p>
 
-            <div className="mx-auto mt-10 max-w-4xl rounded-[36px] border border-white/28 bg-white/14 p-5 shadow-[0_32px_90px_rgba(76,23,88,0.28)] backdrop-blur-md md:p-7">
-              <div className="grid items-center gap-6 md:grid-cols-[240px_1fr] md:text-left">
-                <div className="flex flex-col items-center justify-center gap-4">
-                  <div className="hero-portrait hero-portrait-lg">
+            <div className="mx-auto mt-10 max-w-4xl rounded-[36px] border border-white/28 bg-white/14 p-5 shadow-[0_32px_90px_rgba(76,23,88,0.28)] backdrop-blur-md md:p-8">
+              <div className="flex flex-col items-center text-center">
+                <div className="inline-flex items-center gap-3 rounded-full border border-white/24 bg-white/14 px-4 py-2 text-sm font-bold uppercase tracking-[0.18em] text-white/88">
+                  <Award size={16} />
+                  Featured recognition
+                </div>
+                <div className="mt-6 flex flex-col items-center justify-center gap-4">
+                  <div className="hero-portrait hero-portrait-featured">
                     <span>{getInitials(honorees[0].name)}</span>
                   </div>
                   <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/72">
@@ -230,18 +243,12 @@ export default function LandingPage() {
                   </p>
                 </div>
 
-                <div>
-                  <div className="inline-flex items-center gap-3 rounded-full border border-white/24 bg-white/14 px-4 py-2 text-sm font-bold uppercase tracking-[0.18em] text-white/88">
-                    <Award size={16} />
-                    Featured recognition
-                  </div>
-                  <h2 className="mt-5 text-4xl font-black leading-tight text-white md:text-5xl">
-                    {honorees[0].name}
-                  </h2>
-                  <p className="mt-4 text-xl leading-8 text-white/86">
-                    {honorees[0].honor}
-                  </p>
-                </div>
+                <h2 className="mt-6 text-4xl font-black leading-tight text-white md:text-6xl">
+                  {honorees[0].name}
+                </h2>
+                <p className="mt-4 max-w-3xl text-2xl leading-9 text-white/90">
+                  {honorees[0].honor}
+                </p>
               </div>
             </div>
 
@@ -258,22 +265,43 @@ export default function LandingPage() {
                   <p className="mt-5 text-2xl font-black leading-tight text-white">
                     {person.name}
                   </p>
-                  <p className="mt-3 text-base leading-7 text-white/82">
+                  <p className="mt-3 text-lg leading-8 text-white/86">
                     {person.honor}
                   </p>
                 </motion.div>
               ))}
             </div>
 
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              {programTags.map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full border border-white/24 bg-white/14 px-5 py-3 text-sm font-bold text-white shadow-[0_12px_30px_rgba(50,20,72,0.18)] backdrop-blur-md"
-                >
-                  {tag}
-                </span>
-              ))}
+            <div className="mt-10">
+              <div className="text-center">
+                <p className="text-sm font-extrabold uppercase tracking-[0.24em] text-white/78">
+                  Programs of the Year
+                </p>
+                <p className="mx-auto mt-3 max-w-2xl text-lg leading-8 text-white/84">
+                  Honoring the programs creating everyday impact for children,
+                  families, and the communities around them.
+                </p>
+              </div>
+
+              <div className="mt-6 grid gap-4 md:grid-cols-3">
+                {programsOfTheYear.map((program, index) => (
+                  <motion.div
+                    key={program.name}
+                    {...reveal(0.08 * (index + 1))}
+                    className="rounded-[32px] border border-white/24 bg-white/14 p-5 text-center shadow-[0_22px_60px_rgba(67,31,99,0.22)] backdrop-blur-md"
+                  >
+                    <div className="hero-logo">
+                      <span>{program.monogram}</span>
+                    </div>
+                    <p className="mt-4 text-xs font-bold uppercase tracking-[0.2em] text-white/70">
+                      Logo placeholder
+                    </p>
+                    <h3 className="mt-5 text-2xl font-black leading-tight text-white">
+                      {program.name}
+                    </h3>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
         </motion.div>
@@ -460,9 +488,11 @@ export default function LandingPage() {
             Let&apos;s keep the conversation going.
           </h2>
           <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-            If something in this story feels close to your work, fill out the
-            form below. Mike from WELS would love to hear what you&apos;re
-            building, what questions you have, and how the team can help.
+            Hi, I&apos;m Mike from WELS. If something in this story feels close
+            to your work, fill out the form below and tell me what you&apos;re
+            building, what questions you have, or what your team is trying to
+            make possible for children and families. We&apos;ll meet you where
+            you are.
           </p>
 
           <div className="mt-10 wels-card p-8 md:p-10">
@@ -477,9 +507,9 @@ export default function LandingPage() {
                 Mike from WELS
               </p>
               <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-600">
-                Reach out if you want to talk through ideas, ask a question, or
-                simply share what your team is trying to make possible for
-                children and families. We&apos;ll meet you where you are.
+                I&apos;d love to hear from you. Reach out if you want to talk
+                through ideas, ask a question, or start a conversation about
+                how WELS can help.
               </p>
             </div>
 
