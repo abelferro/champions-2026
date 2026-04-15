@@ -167,6 +167,8 @@ export default function MauticContactForm({
   const [showMessageField, setShowMessageField] = useState(false);
   const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false);
   const progressRatio = currentStep === 1 ? 0 : currentStep === 2 ? 0.5 : 1;
+  const selectedRoleLabel =
+    roleOptions.find((option) => option.value === formData.role)?.label ?? "";
 
   useEffect(() => {
     const win = window as Window & {
@@ -294,10 +296,10 @@ export default function MauticContactForm({
     body.append("mauticform[last_name]", formData.last_name.trim());
     body.append("mauticform[email]", formData.email.trim());
     body.append("mauticform[phone_number]", formData.phone_number.trim());
-    body.append("mauticform[organization]", formData.organization.trim());
-    body.append("mauticform[role]", formData.role.trim());
+    body.append("mauticform[programs]", formData.organization.trim());
+    body.append("mauticform[role]", selectedRoleLabel);
     formData.interest1.forEach((value) =>
-      body.append("mauticform[interest1][]", value),
+      body.append("mauticform[interest][]", value),
     );
     body.append("mauticform[f_message]", formData.f_message.trim());
     body.append("mauticform[submit]", "");
@@ -533,7 +535,7 @@ export default function MauticContactForm({
                     </label>
                     <input
                       id="mauticform_input_welslandingcapture_organization"
-                      name="mauticform[organization]"
+                      name="mauticform[programs]"
                       type="text"
                       autoComplete="organization"
                       placeholder="Organization name"
@@ -665,7 +667,7 @@ export default function MauticContactForm({
                         <input
                           key={value}
                           type="hidden"
-                          name="mauticform[interest1][]"
+                          name="mauticform[interest][]"
                           value={value}
                           readOnly
                         />
