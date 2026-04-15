@@ -350,38 +350,23 @@ export default function LandingPage() {
       <section id="system" className="mx-auto max-w-7xl px-6 py-16 md:py-20">
         <div className="grid gap-8 lg:grid-cols-[0.98fr_0.9fr] lg:items-start">
           <motion.div {...reveal()} className="max-w-2xl">
-            <p className="section-kicker">
-              Proud Sponsor of Champions for Children 2026
-            </p>
-            <h2 className="mt-4 text-4xl font-bold tracking-tight text-brand-ink md:text-5xl">
-              Behind every champion, there&apos;s a system that supports them.
+            <h2 className="text-4xl font-bold tracking-tight text-brand-ink md:text-5xl">
+              Behind every champion is a system of support.
             </h2>
-            <p className="mt-5 max-w-xl text-lg leading-8 text-slate-600">
-              WELS supports the care and development of children ages 0–5 by
-              helping the people, programs, and systems around them stay
-              connected.
+            <p className="mt-4 max-w-[34rem] text-base leading-8 text-slate-600 md:text-lg">
+              WELS helps the people, programs, and systems around children stay connected and move forward with more clarity.
             </p>
           </motion.div>
 
           <motion.div
             {...reveal(0.08)}
-            className="rounded-[32px] border border-slate-200 bg-white/88 p-6 shadow-[0_28px_80px_rgba(15,23,42,0.08)] backdrop-blur-sm md:p-7"
+            className="px-1 py-1 md:px-2"
           >
-            <div className="flex items-start gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-blue/10 text-brand-blue">
-                <LayoutDashboard size={20} />
-              </div>
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-blue">
-                  What that support makes possible
-                </p>
-                <p className="mt-1 max-w-md text-base leading-7 text-slate-600">
-                  Practical ways WELS helps people and programs stay aligned.
-                </p>
-              </div>
-            </div>
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-blue">
+              What that support makes possible
+            </p>
 
-            <div className="mt-6 space-y-4">
+            <div className="mt-5 space-y-2.5">
               {systemBenefits.map((benefit) => (
                 <div key={benefit} className="flex items-start gap-3">
                   <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-brand-blue" />
@@ -392,19 +377,19 @@ export default function LandingPage() {
           </motion.div>
         </div>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
+        <div className="mt-12 grid gap-4 md:mt-14 md:grid-cols-3">
           {impactStats.map((item, index) => {
             const cardBackgrounds = [
-              "border-[rgba(50,108,252,0.16)] bg-[linear-gradient(135deg,rgba(50,108,252,0.14),rgba(255,255,255,0.96)_42%,rgba(255,255,255,0.98)_100%)]",
-              "border-[rgba(228,64,129,0.16)] bg-[linear-gradient(135deg,rgba(228,64,129,0.14),rgba(255,255,255,0.96)_42%,rgba(255,255,255,0.98)_100%)]",
-              "border-[rgba(255,214,0,0.22)] bg-[linear-gradient(135deg,rgba(255,214,0,0.18),rgba(255,255,255,0.95)_42%,rgba(255,255,255,0.98)_100%)]",
+              "border-[rgba(50,108,252,0.2)] bg-[linear-gradient(135deg,rgba(50,108,252,0.22)_0%,rgba(104,153,255,0.12)_22%,rgba(255,255,255,0.97)_60%,rgba(255,255,255,0.99)_100%)]",
+              "border-[rgba(228,64,129,0.2)] bg-[linear-gradient(135deg,rgba(228,64,129,0.22)_0%,rgba(244,132,176,0.12)_22%,rgba(255,255,255,0.97)_60%,rgba(255,255,255,0.99)_100%)]",
+              "border-[rgba(255,214,0,0.28)] bg-[linear-gradient(135deg,rgba(255,214,0,0.26)_0%,rgba(255,233,114,0.14)_22%,rgba(255,255,255,0.96)_60%,rgba(255,255,255,0.99)_100%)]",
             ];
 
             return (
               <motion.div
                 key={item.label}
                 {...reveal(index * 0.05)}
-                className={`rounded-[24px] border p-5 shadow-[0_18px_44px_rgba(15,23,42,0.06)] backdrop-blur-sm md:min-h-[220px] ${cardBackgrounds[index]}`}
+                className={`rounded-[24px] border p-6 shadow-[0_18px_44px_rgba(15,23,42,0.06)] backdrop-blur-sm md:min-h-[205px] md:p-7 ${cardBackgrounds[index]}`}
               >
                 <p className="text-4xl font-bold tracking-tight text-brand-ink">
                   {item.value}
@@ -412,7 +397,7 @@ export default function LandingPage() {
                 <p className="mt-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
                   {item.label}
                 </p>
-                <p className="mt-4 max-w-[22ch] text-sm leading-6 text-slate-600">
+                <p className="mt-4 text-base leading-7 text-slate-600">
                   {item.detail}
                 </p>
               </motion.div>

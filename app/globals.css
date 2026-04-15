@@ -20,6 +20,9 @@
     font-family: var(--font-sans);
     color: var(--color-brand-ink);
     background:
+      radial-gradient(circle at -8% 22%, transparent 0 7.2%, rgba(80, 195, 246, 0.16) 8.6%, rgba(80, 195, 246, 0.06) 10.4%, transparent 13.8%),
+      radial-gradient(circle at 108% 18%, transparent 0 5.8%, rgba(255, 181, 102, 0.16) 7.1%, rgba(228, 64, 129, 0.08) 8.8%, transparent 11.9%),
+      radial-gradient(circle at 106% 72%, transparent 0 8.8%, rgba(50, 108, 252, 0.11) 10.3%, rgba(255, 214, 0, 0.05) 12.2%, transparent 16.2%),
       radial-gradient(circle at 18% 8%, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.84) 16%, transparent 34%),
       radial-gradient(circle at 8% 10%, rgba(255, 255, 255, 0.7), transparent 22%),
       radial-gradient(circle at top right, rgba(255, 214, 0, 0.18), transparent 30%),
@@ -67,7 +70,7 @@
     font-weight: 900;
     letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: var(--color-brand-blue);
+    color: var(--color-brand-ink);
   }
 
   .champions-hero {

@@ -164,6 +164,7 @@ export default function MauticContactForm({
   const [submissionError, setSubmissionError] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
   const [showMessageField, setShowMessageField] = useState(false);
+  const progressRatio = currentStep === 1 ? 0 : currentStep === 2 ? 0.5 : 1;
 
   useEffect(() => {
     const win = window as Window & {
@@ -324,7 +325,7 @@ export default function MauticContactForm({
     <>
       <div className="overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_20px_48px_rgba(15,23,42,0.08)]">
         <div className="p-5 md:p-8">
-        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div className="text-center">
           <div>
             {formKicker ? (
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-blue">
@@ -335,46 +336,52 @@ export default function MauticContactForm({
               {formTitle}
             </h3>
           </div>
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-400">
-            Step {currentStep} of 3
-          </p>
         </div>
 
         <ol className="relative mt-6 grid grid-cols-3 gap-3 md:gap-6">
-          {stepSequence.map((step, index) => {
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute left-[calc(100%/6)] right-[calc(100%/6)] top-6 z-0 h-[3px] -translate-y-1/2 rounded-full bg-slate-200"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute left-[calc(100%/6)] top-6 z-0 h-[3px] -translate-y-1/2 rounded-full bg-brand-pink transition-[width] duration-300 ease-out"
+            style={{ width: `calc((100% - (100% / 3)) * ${progressRatio})` }}
+          />
+          {stepSequence.map((step) => {
             const isActive = step === currentStep;
             const isComplete = step < currentStep;
-            const connectorState =
-              currentStep > step ? "bg-brand-ink/40" : "bg-slate-200";
 
             return (
               <li
                 key={step}
-                className="relative z-10 flex min-w-0 justify-center"
+                className="relative flex min-w-0 justify-center"
               >
-                <div className="flex min-w-0 flex-col items-center text-center">
+                <div className="relative z-10 flex min-w-0 flex-col items-center text-center">
                   <span
-                    className={`inline-flex h-11 w-11 items-center justify-center rounded-full border bg-white text-sm font-bold transition ${
-                      isActive
-                        ? "border-brand-ink bg-brand-ink text-white"
-                        : isComplete
-                          ? "border-brand-ink bg-brand-ink text-white"
-                          : "border-slate-300 text-slate-400"
+                    className={`inline-flex h-12 w-12 items-center justify-center rounded-full text-base font-bold shadow-[0_8px_20px_rgba(255,255,255,0.95)] transition ${
+                      isComplete
+                        ? "border border-brand-pink bg-brand-pink text-white"
+                      : isActive
+                          ? "border border-brand-pink bg-brand-pink text-white"
+                          : "border-2 border-brand-pink/35 bg-white text-brand-pink"
                     }`}
                     aria-current={isActive ? "step" : undefined}
                   >
-                    {isComplete ? <Check size={18} /> : step}
+                    {isComplete ? <Check size={18} strokeWidth={2.6} /> : step}
                   </span>
-                  <span className="mt-3 hidden text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 md:block">
+                  <span
+                    className={`mt-3 hidden text-xs font-semibold uppercase tracking-[0.16em] md:block ${
+                      isActive
+                        ? "text-brand-ink"
+                        : isComplete
+                          ? "text-brand-ink"
+                          : "text-brand-ink/85"
+                    }`}
+                  >
                     {stepContent[step].label}
                   </span>
                 </div>
-                {index < stepSequence.length - 1 && (
-                  <span
-                    className={`pointer-events-none absolute left-1/2 right-[-50%] top-[22px] h-px rounded-full ${connectorState}`}
-                    aria-hidden="true"
-                  />
-                )}
               </li>
             );
           })}
