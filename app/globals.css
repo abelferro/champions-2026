@@ -164,6 +164,23 @@
     width: 10rem;
   }
 
+  .portrait-placeholder__image {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    padding: 1rem 1rem 0;
+    filter: drop-shadow(0 20px 36px rgba(77, 24, 91, 0.18));
+  }
+
+  .portrait-placeholder__image--featured {
+    padding: 1.25rem 1.25rem 0;
+    transform: scale(1.08);
+    transform-origin: center bottom;
+  }
+
   .logo-placeholder {
     position: relative;
     display: grid;

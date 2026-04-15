@@ -52,18 +52,22 @@ const honorees = [
   {
     name: "Gepsie Metellus",
     honor: "David Lawrence Jr. Champion for Children Award",
+    image: "/images/gepsie-400.png",
   },
   {
     name: "Twala Kelly",
     honor: "Excellence in Direct Service Award",
+    image: "/images/twala-400.png",
   },
   {
     name: "Andrea Cabrera-Elguezabal",
     honor: "Excellence in Youth Leadership Award",
+    image: "/images/andrea-400.png",
   },
   {
     name: "Hon. Alexis Calatayud",
     honor: "Excellence in Advocacy Award",
+    image: "/images/hon-400.png",
   },
 ];
 
@@ -196,26 +200,30 @@ function Section({
   );
 }
 
-function PortraitPlaceholder({ featured = false }: { featured?: boolean }) {
+function PortraitPlaceholder({
+  featured = false,
+  src,
+  alt,
+}: {
+  featured?: boolean;
+  src?: string;
+  alt?: string;
+}) {
   return (
-    <div
-      aria-hidden="true"
-      className={`portrait-placeholder ${featured ? "portrait-placeholder-featured" : ""}`}
-    >
+    <div className={`portrait-placeholder ${featured ? "portrait-placeholder-featured" : ""}`}>
       <div className="portrait-placeholder__glow" />
-      <div className="portrait-placeholder__shape">
-        <UserRound size={featured ? 88 : 54} className="text-white/88" />
-      </div>
-    </div>
-  );
-}
-
-function LogoPlaceholder() {
-  return (
-    <div aria-hidden="true" className="logo-placeholder">
-      <div className="logo-placeholder__ring" />
-      <div className="logo-placeholder__mark" />
-      <div className="logo-placeholder__mark logo-placeholder__mark--small" />
+      {src ? (
+        <img
+          src={src}
+          alt={alt ?? ""}
+          className={`portrait-placeholder__image ${featured ? "portrait-placeholder__image--featured" : ""}`}
+          loading="lazy"
+        />
+      ) : (
+        <div aria-hidden="true" className="portrait-placeholder__shape">
+          <UserRound size={featured ? 88 : 54} className="text-white/88" />
+        </div>
+      )}
     </div>
   );
 }
@@ -295,7 +303,11 @@ export default function LandingPage() {
                 Featured recognition
               </div>
               <div className="mx-auto mt-6 max-w-[320px]">
-                <PortraitPlaceholder featured />
+                <PortraitPlaceholder
+                  featured
+                  src={honorees[0].image}
+                  alt={honorees[0].name}
+                />
               </div>
               <h2 className="mt-6 text-4xl font-bold leading-tight text-white md:text-6xl">
                 {honorees[0].name}
@@ -314,12 +326,9 @@ export default function LandingPage() {
                   className="rounded-[32px] border border-white/24 bg-white/14 p-6 text-center shadow-[0_24px_60px_rgba(67,31,99,0.22)] backdrop-blur-xl"
                 >
                   <div className="rounded-[28px] border border-white/60 bg-white/10 p-4">
-                    <PortraitPlaceholder />
+                    <PortraitPlaceholder src={person.image} alt={person.name} />
                   </div>
-                  <p className="mt-5 text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
-                    Honoree
-                  </p>
-                  <h3 className="mt-3 text-3xl font-bold leading-tight text-white">
+                  <h3 className="mt-5 text-3xl font-bold leading-tight text-white">
                     {person.name}
                   </h3>
                   <p className="mx-auto mt-3 max-w-[16rem] text-lg leading-8 text-white/82">
@@ -344,17 +353,11 @@ export default function LandingPage() {
                 {programsOfTheYear.map((program, index) => (
                   <motion.article
                     key={program.name}
-                    {...reveal(0.08 * (index + 1))}
-                    {...cardMotion}
-                    className="rounded-[32px] border border-white/24 bg-white/14 p-6 text-center shadow-[0_24px_60px_rgba(67,31,99,0.22)] backdrop-blur-xl"
+                  {...reveal(0.08 * (index + 1))}
+                  {...cardMotion}
+                  className="rounded-[32px] border border-white/24 bg-white/14 p-6 text-center shadow-[0_24px_60px_rgba(67,31,99,0.22)] backdrop-blur-xl"
                   >
-                    <div className="rounded-[28px] border border-white/60 bg-white/10 p-5">
-                      <LogoPlaceholder />
-                    </div>
-                    <p className="mt-5 text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
-                      Program Honoree
-                    </p>
-                    <h3 className="mt-3 text-3xl font-bold leading-tight text-white">
+                    <h3 className="mt-1 text-3xl font-bold leading-tight text-white">
                       {program.name}
                     </h3>
                   </motion.article>
@@ -529,12 +532,6 @@ export default function LandingPage() {
       <section id="contact" className="w-full px-0 py-16 md:mx-auto md:max-w-5xl md:px-6 md:py-20">
         <motion.div {...reveal()} className="mx-auto max-w-4xl px-6 text-center md:px-0">
           <p className="section-kicker">Start the Conversation</p>
-          <h2 className="mt-4 text-4xl font-bold tracking-tight text-brand-ink md:text-5xl">
-            Tell us a little about you.
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">
-            We&apos;ll follow up with the right next step for you and your team.
-          </p>
 
           <div className="mt-8 wels-card flex flex-col gap-5 rounded-none p-6 text-left md:rounded-[32px] md:flex-row md:items-center md:justify-between md:p-7">
             <div className="flex items-center gap-4">
@@ -574,7 +571,7 @@ export default function LandingPage() {
 
           <div className="mt-8 text-left">
             <MauticContactForm
-              formKicker="Start the conversation"
+              formKicker=""
               formTitle="Tell us a little about you."
               successKicker="Thanks for reaching out"
               successTitle="You're all set."

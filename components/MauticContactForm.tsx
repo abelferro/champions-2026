@@ -326,10 +326,12 @@ export default function MauticContactForm({
         <div className="p-5 md:p-8">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-blue">
-              {formKicker}
-            </p>
-            <h3 className="mt-3 text-3xl font-bold tracking-tight text-brand-ink md:text-4xl">
+            {formKicker ? (
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-blue">
+                {formKicker}
+              </p>
+            ) : null}
+            <h3 className={`${formKicker ? "mt-3" : ""} text-3xl font-bold tracking-tight text-brand-ink md:text-4xl`}>
               {formTitle}
             </h3>
           </div>
@@ -338,38 +340,38 @@ export default function MauticContactForm({
           </p>
         </div>
 
-        <ol className="mt-6 flex items-center">
+        <ol className="relative mt-6 grid grid-cols-3 gap-3 md:gap-6">
           {stepSequence.map((step, index) => {
             const isActive = step === currentStep;
             const isComplete = step < currentStep;
+            const connectorState =
+              currentStep > step ? "bg-brand-ink/40" : "bg-slate-200";
 
             return (
               <li
                 key={step}
-                className={`flex items-center ${step === 3 ? "flex-1 justify-end" : "flex-[1_1_0%]"}`}
+                className="relative z-10 flex min-w-0 justify-center"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex min-w-0 flex-col items-center text-center">
                   <span
-                    className={`inline-flex h-11 w-11 items-center justify-center rounded-full border text-sm font-bold transition ${
+                    className={`inline-flex h-11 w-11 items-center justify-center rounded-full border bg-white text-sm font-bold transition ${
                       isActive
                         ? "border-brand-ink bg-brand-ink text-white"
                         : isComplete
                           ? "border-brand-ink bg-brand-ink text-white"
-                          : "border-slate-300 bg-white text-slate-400"
+                          : "border-slate-300 text-slate-400"
                     }`}
                     aria-current={isActive ? "step" : undefined}
                   >
                     {isComplete ? <Check size={18} /> : step}
                   </span>
-                  <span className="hidden text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 md:inline">
+                  <span className="mt-3 hidden text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 md:block">
                     {stepContent[step].label}
                   </span>
                 </div>
                 {index < stepSequence.length - 1 && (
                   <span
-                    className={`mx-3 h-px flex-1 rounded-full ${
-                      isComplete ? "bg-brand-ink/40" : "bg-slate-200"
-                    }`}
+                    className={`pointer-events-none absolute left-1/2 right-[-50%] top-[22px] h-px rounded-full ${connectorState}`}
                     aria-hidden="true"
                   />
                 )}
@@ -586,8 +588,9 @@ export default function MauticContactForm({
                       </p>
                     </div>
 
-                    <div className="max-h-[55vh] overflow-y-auto pr-1 lg:max-h-[360px]">
-                      <div className="grid gap-3 lg:grid-cols-2">
+                    <div className="rounded-[24px] border border-slate-200 bg-slate-50/70 p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),inset_0_-10px_18px_rgba(15,23,42,0.04)]">
+                      <div className="max-h-[42vh] overflow-y-auto pr-1 lg:max-h-[300px]">
+                        <div className="grid gap-3 lg:grid-cols-2">
                         {interestOptions.map((option) => {
                           const selected = formData.interest1.includes(option.value);
                           const Icon = option.icon;
@@ -637,6 +640,7 @@ export default function MauticContactForm({
                             </button>
                           );
                         })}
+                        </div>
                       </div>
                     </div>
 
