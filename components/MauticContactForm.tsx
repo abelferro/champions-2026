@@ -5,7 +5,6 @@ import {
   Briefcase,
   CalendarDays,
   Check,
-  CheckCircle2,
   ChevronDown,
   ChevronLeft,
   CircleHelp,
@@ -150,6 +149,10 @@ const stepContent = {
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+function RequiredDot() {
+  return <span aria-hidden="true" className="ml-1 text-brand-pink">*</span>;
+}
+
 export default function MauticContactForm({
   formKicker,
   formTitle,
@@ -164,6 +167,7 @@ export default function MauticContactForm({
   const [submissionError, setSubmissionError] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
   const [showMessageField, setShowMessageField] = useState(false);
+  const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false);
   const progressRatio = currentStep === 1 ? 0 : currentStep === 2 ? 0.5 : 1;
 
   useEffect(() => {
@@ -279,6 +283,7 @@ export default function MauticContactForm({
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSubmissionError("");
+    setHasAttemptedSubmit(true);
 
     if (!validateStep(3)) {
       return;
@@ -313,6 +318,7 @@ export default function MauticContactForm({
       setErrors({});
       setCurrentStep(1);
       setShowMessageField(false);
+      setHasAttemptedSubmit(false);
       setShowSuccess(true);
     } catch {
       setSubmissionError("Something went wrong. Please try again in a moment.");
@@ -323,8 +329,8 @@ export default function MauticContactForm({
 
   return (
     <>
-      <div className="overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_20px_48px_rgba(15,23,42,0.08)]">
-        <div className="p-5 md:p-8">
+      <div className="overflow-hidden rounded-b-[28px] rounded-t-none border border-t-0 border-slate-200 bg-white shadow-[0_20px_48px_rgba(15,23,42,0.08)] md:rounded-[28px] md:border-t">
+        <div className="px-5 pb-5 pt-7 md:p-8">
         <div className="text-center">
           <div>
             {formKicker ? (
@@ -402,7 +408,7 @@ export default function MauticContactForm({
           onSubmit={handleSubmit}
           noValidate
         >
-          <div className="min-h-[420px] md:min-h-[400px]">
+          <div className="min-h-[320px] md:min-h-[400px]">
             <AnimatePresence mode="wait" initial={false}>
               {currentStep === 1 && (
                 <motion.section
@@ -416,6 +422,7 @@ export default function MauticContactForm({
                   <div>
                     <label className="mb-2 block text-sm font-semibold text-brand-ink">
                       First Name
+                      <RequiredDot />
                     </label>
                     <input
                       id="mauticform_input_welslandingcapture_first_name"
@@ -461,6 +468,7 @@ export default function MauticContactForm({
                   <div>
                     <label className="mb-2 block text-sm font-semibold text-brand-ink">
                       Email
+                      <RequiredDot />
                     </label>
                     <input
                       id="mauticform_input_welslandingcapture_email"
@@ -483,6 +491,31 @@ export default function MauticContactForm({
                       </p>
                     )}
                   </div>
+
+                  <div>
+                    <label className="mb-2 block text-sm font-semibold text-brand-ink">
+                      Phone
+                    </label>
+                    <div className="relative">
+                      <input
+                        id="mauticform_input_welslandingcapture_phone_number"
+                        name="mauticform[phone_number]"
+                        type="tel"
+                        autoComplete="tel"
+                        inputMode="tel"
+                        placeholder="(555) 555-5555"
+                        value={formData.phone_number}
+                        onChange={(event) =>
+                          updateField("phone_number", event.target.value)
+                        }
+                        className="min-h-[56px] w-full rounded-[18px] border border-slate-200 bg-white px-4 py-3 pl-11 text-base text-brand-ink placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-brand-blue/10"
+                      />
+                      <Phone
+                        size={16}
+                        className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+                      />
+                    </div>
+                  </div>
                 </motion.section>
               )}
 
@@ -498,6 +531,7 @@ export default function MauticContactForm({
                   <div>
                     <label className="mb-2 block text-sm font-semibold text-brand-ink">
                       Organization
+                      <RequiredDot />
                     </label>
                     <input
                       id="mauticform_input_welslandingcapture_organization"
@@ -549,30 +583,6 @@ export default function MauticContactForm({
                     </div>
                   </div>
 
-                  <div>
-                    <label className="mb-2 block text-sm font-semibold text-brand-ink">
-                      Phone
-                    </label>
-                    <div className="relative">
-                      <input
-                        id="mauticform_input_welslandingcapture_phone_number"
-                        name="mauticform[phone_number]"
-                        type="tel"
-                        autoComplete="tel"
-                        inputMode="tel"
-                        placeholder="(555) 555-5555"
-                        value={formData.phone_number}
-                        onChange={(event) =>
-                          updateField("phone_number", event.target.value)
-                        }
-                        className="min-h-[56px] w-full rounded-[18px] border border-slate-200 bg-white px-4 py-3 pl-11 text-base text-brand-ink placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-brand-blue/10"
-                      />
-                      <Phone
-                        size={16}
-                        className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
-                      />
-                    </div>
-                  </div>
                 </motion.section>
               )}
 
@@ -589,6 +599,7 @@ export default function MauticContactForm({
                     <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                       <legend className="text-sm font-semibold text-brand-ink">
                         Interests
+                        <RequiredDot />
                       </legend>
                       <p className="text-sm text-slate-500">
                         Choose one or more areas of interest.
@@ -596,7 +607,7 @@ export default function MauticContactForm({
                     </div>
 
                     <div className="rounded-[24px] border border-slate-200 bg-slate-50/70 p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),inset_0_-10px_18px_rgba(15,23,42,0.04)]">
-                      <div className="max-h-[42vh] overflow-y-auto pr-1 lg:max-h-[300px]">
+                      <div className="max-h-[240px] overflow-y-auto pr-1 md:max-h-[270px] lg:max-h-[300px]">
                         <div className="grid gap-3">
                         {interestOptions.map((option) => {
                           const selected = formData.interest1.includes(option.value);
@@ -608,13 +619,13 @@ export default function MauticContactForm({
                               type="button"
                               aria-pressed={selected}
                               onClick={() => toggleInterest(option.value)}
-                              className={`min-h-[112px] rounded-[20px] border p-4 text-left transition active:scale-[0.98] ${
+                              className={`rounded-[20px] border px-4 py-3 text-left transition active:scale-[0.98] ${
                                 selected
                                   ? "border-brand-blue bg-brand-blue/6 shadow-[0_10px_24px_rgba(50,108,252,0.12)]"
                                   : "border-slate-200 bg-white hover:border-slate-300"
                               }`}
                             >
-                              <div className="flex h-full items-start gap-4">
+                              <div className="flex items-start gap-4">
                                 <div
                                   className={`mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl ${
                                     selected
@@ -626,16 +637,16 @@ export default function MauticContactForm({
                                 </div>
 
                                 <div className="min-w-0 flex-1">
-                                  <p className="text-base font-bold leading-tight text-brand-ink">
+                                  <p className="text-sm font-bold leading-tight text-brand-ink md:text-base">
                                     {option.label}
                                   </p>
-                                  <p className="mt-1 text-sm leading-6 text-slate-500">
+                                  <p className="mt-1 text-xs leading-5 text-slate-500 md:text-sm">
                                     {option.description}
                                   </p>
                                 </div>
 
                                 <div
-                                  className={`mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border transition ${
+                                  className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border transition ${
                                     selected
                                       ? "border-brand-blue bg-brand-blue text-white"
                                       : "border-slate-300 bg-white text-transparent"
@@ -663,11 +674,6 @@ export default function MauticContactForm({
                       ))}
                     </div>
 
-                    {errors.interest1 && (
-                      <p className="mt-2 text-sm font-semibold text-rose-600">
-                        {errors.interest1}
-                      </p>
-                    )}
                   </fieldset>
 
                   <div className="rounded-[20px] border border-slate-200 bg-slate-50/50">
@@ -722,10 +728,6 @@ export default function MauticContactForm({
           />
 
           <div className="sticky bottom-0 -mx-5 mt-6 border-t border-slate-200 bg-white/95 px-5 py-4 backdrop-blur md:static md:mx-0 md:border-t-0 md:bg-transparent md:px-0 md:py-0">
-            <p className="mb-4 text-sm leading-6 text-slate-500">
-              {stepContent[currentStep].helper}
-            </p>
-
             <div
               className={`grid gap-3 ${currentStep > 1 ? "grid-cols-[auto_1fr]" : "grid-cols-1"}`}
             >
@@ -784,22 +786,17 @@ export default function MauticContactForm({
               loading="lazy"
             />
 
-            <div className="mx-auto mt-6 flex h-16 w-16 items-center justify-center rounded-full bg-brand-ink text-white shadow-[0_18px_34px_rgba(29,27,69,0.18)]">
-              <CheckCircle2 size={28} />
-            </div>
-
-            <p className="mt-6 text-sm font-semibold uppercase tracking-[0.18em] text-brand-blue">
+            <p className="mt-8 text-sm font-semibold uppercase tracking-[0.18em] text-brand-blue">
               {successKicker}
             </p>
             <h3 className="mx-auto mt-3 max-w-[12ch] text-4xl font-bold tracking-tight text-brand-ink md:text-5xl">
               {successTitle}
             </h3>
-            <p className="mx-auto mt-5 max-w-[32ch] text-lg leading-8 text-slate-600">
+            <p className="mx-auto mt-5 max-w-[34ch] text-lg leading-8 text-slate-600">
               {successMessage}
             </p>
-            <p className="mx-auto mt-4 max-w-[34ch] text-base leading-7 text-slate-500">
-              Mike from WELS and our team will be in touch shortly. Thank you
-              for taking a moment to share your goals with us.
+            <p className="mt-5 text-sm font-semibold text-slate-500">
+              Mike from WELS
             </p>
 
             <div className="mt-8 flex justify-center">

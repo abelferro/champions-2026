@@ -118,7 +118,7 @@
     position: relative;
     display: flex;
     min-height: 12rem;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.24);
@@ -170,16 +170,18 @@
   .portrait-placeholder__image {
     position: relative;
     z-index: 1;
+    display: block;
     width: 100%;
     height: 100%;
+    align-self: flex-end;
     object-fit: contain;
     object-position: center bottom;
-    padding: 1rem 1rem 0;
+    padding: 0.85rem 0.85rem 0;
     filter: drop-shadow(0 20px 36px rgba(77, 24, 91, 0.18));
   }
 
   .portrait-placeholder__image--featured {
-    padding: 1.25rem 1.25rem 0;
+    padding: 1rem 1rem 0;
     transform: scale(1.08);
     transform-origin: center bottom;
   }

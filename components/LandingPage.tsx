@@ -16,7 +16,6 @@ import {
   LayoutDashboard,
   Mail,
   Phone,
-  Sparkles,
   UserRound,
   Users,
 } from "lucide-react";
@@ -253,7 +252,7 @@ export default function LandingPage() {
         </a>
       </header>
 
-      <section className="w-full px-0 pb-14 pt-4 md:mx-auto md:max-w-7xl md:px-6 md:pb-18">
+      <section className="w-full px-0 pb-14 pt-0 md:mx-auto md:max-w-7xl md:px-6 md:pb-18">
         <motion.div
           {...reveal()}
           className="champions-hero relative overflow-hidden rounded-none px-6 py-10 md:rounded-[40px] md:px-10 md:py-14 lg:px-14 lg:py-16"
@@ -261,8 +260,7 @@ export default function LandingPage() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.18),transparent_28%),radial-gradient(circle_at_bottom,rgba(84,110,255,0.2),transparent_35%)]" />
 
           <div className="relative z-10 mx-auto max-w-5xl text-center">
-            <div className="inline-flex items-center gap-3 rounded-full border border-white/24 bg-white/14 px-5 py-2 text-sm font-semibold uppercase tracking-[0.22em] text-white/92 backdrop-blur-md">
-              <Sparkles size={16} />
+            <div className="inline-flex justify-center rounded-full border border-white/24 bg-white/14 px-4 py-2 text-center text-xs font-semibold uppercase tracking-[0.18em] whitespace-nowrap text-white/92 backdrop-blur-md md:px-5 md:text-sm md:tracking-[0.22em]">
               Champions for Children 2026
             </div>
 
@@ -470,10 +468,10 @@ export default function LandingPage() {
       </Section>
 
       <section id="contact" className="w-full px-0 py-16 md:mx-auto md:max-w-5xl md:px-6 md:py-20">
-        <motion.div {...reveal()} className="mx-auto max-w-4xl px-6 text-center md:px-0">
+        <motion.div {...reveal()} className="mx-auto max-w-4xl text-center">
           <p className="section-kicker">Start the Conversation</p>
 
-          <div className="mt-8 wels-card flex flex-col gap-5 rounded-none p-6 text-left md:rounded-[32px] md:flex-row md:items-center md:justify-between md:p-7">
+          <div className="mt-8 wels-card flex flex-col gap-5 !rounded-b-none !rounded-t-[32px] px-6 pb-8 pt-6 text-left md:!rounded-[32px] md:flex-row md:items-center md:justify-between md:p-7">
             <div className="flex items-center gap-4">
               <img
                 src={mikeUrl}
@@ -509,13 +507,13 @@ export default function LandingPage() {
             </div>
           </div>
 
-          <div className="mx-auto mt-8 max-w-2xl text-left">
+          <div className="mt-1 text-left md:mt-8 md:mx-auto md:max-w-2xl">
             <MauticContactForm
               formKicker=""
               formTitle="Tell us a little about you."
               successKicker="Thanks for reaching out"
               successTitle="You're all set."
-              successMessage="Mike from WELS and our team will contact you soon with the right next step."
+              successMessage="Mike from WELS will reach out soon. He usually handles support and will help with the next step."
             />
           </div>
         </motion.div>
