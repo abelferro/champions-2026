@@ -509,7 +509,7 @@ export default function LandingPage() {
             </div>
           </div>
 
-          <div className="mt-8 text-left">
+          <div className="mx-auto mt-8 max-w-2xl text-left">
             <MauticContactForm
               formKicker=""
               formTitle="Tell us a little about you."

@@ -411,7 +411,7 @@ export default function MauticContactForm({
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-                  className="grid content-start gap-4 md:grid-cols-2"
+                  className="grid content-start gap-4"
                 >
                   <div>
                     <label className="mb-2 block text-sm font-semibold text-brand-ink">
@@ -458,7 +458,7 @@ export default function MauticContactForm({
                     />
                   </div>
 
-                  <div className="md:col-span-2">
+                  <div>
                     <label className="mb-2 block text-sm font-semibold text-brand-ink">
                       Email
                     </label>
@@ -493,9 +493,9 @@ export default function MauticContactForm({
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-                  className="grid content-start gap-4 md:grid-cols-2"
+                  className="grid content-start gap-4"
                 >
-                  <div className="md:col-span-2">
+                  <div>
                     <label className="mb-2 block text-sm font-semibold text-brand-ink">
                       Organization
                     </label>
@@ -597,7 +597,7 @@ export default function MauticContactForm({
 
                     <div className="rounded-[24px] border border-slate-200 bg-slate-50/70 p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),inset_0_-10px_18px_rgba(15,23,42,0.04)]">
                       <div className="max-h-[42vh] overflow-y-auto pr-1 lg:max-h-[300px]">
-                        <div className="grid gap-3 lg:grid-cols-2">
+                        <div className="grid gap-3">
                         {interestOptions.map((option) => {
                           const selected = formData.interest1.includes(option.value);
                           const Icon = option.icon;
@@ -610,7 +610,7 @@ export default function MauticContactForm({
                               onClick={() => toggleInterest(option.value)}
                               className={`min-h-[112px] rounded-[20px] border p-4 text-left transition active:scale-[0.98] ${
                                 selected
-                                  ? "border-brand-ink bg-brand-blue/5 shadow-[0_10px_24px_rgba(15,23,42,0.06)]"
+                                  ? "border-brand-blue bg-brand-blue/6 shadow-[0_10px_24px_rgba(50,108,252,0.12)]"
                                   : "border-slate-200 bg-white hover:border-slate-300"
                               }`}
                             >
@@ -618,7 +618,7 @@ export default function MauticContactForm({
                                 <div
                                   className={`mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl ${
                                     selected
-                                      ? "bg-brand-ink text-white"
+                                      ? "bg-brand-blue text-white"
                                       : "bg-slate-100 text-slate-500"
                                   }`}
                                 >
@@ -637,7 +637,7 @@ export default function MauticContactForm({
                                 <div
                                   className={`mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border transition ${
                                     selected
-                                      ? "border-brand-ink bg-brand-ink text-white"
+                                      ? "border-brand-blue bg-brand-blue text-white"
                                       : "border-slate-300 bg-white text-transparent"
                                   }`}
                                 >
