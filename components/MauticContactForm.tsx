@@ -15,6 +15,7 @@ import {
   UserRound,
   Users,
   Wallet,
+  X,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
@@ -52,6 +53,10 @@ type InterestOption = {
 const FORM_ACTION = "https://marketing.bwelz.org/form/submit?formId=12";
 const MAUTIC_SCRIPT =
   "https://marketing.bwelz.org/media/js/mautic-form.js?vf43116e0";
+const mikeUrl =
+  "https://welsfoundation.org/wp-content/uploads/2022/03/mike-bwelz-360px.jpg";
+const buttonGradient =
+  "linear-gradient(90deg, var(--color-brand-blue, #326cfc) 0%, var(--color-brand-pink, #eb4d8f) 50%, var(--color-brand-blue, #326cfc) 100%)";
 
 const initialState: FormState = {
   first_name: "",
@@ -186,6 +191,28 @@ export default function MauticContactForm({
     win.MauticSDK?.onLoad();
   }, []);
 
+  useEffect(() => {
+    document.body.classList.toggle("has-success-overlay", showSuccess);
+    return () => {
+      document.body.classList.remove("has-success-overlay");
+    };
+  }, [showSuccess]);
+
+  useEffect(() => {
+    if (!showSuccess) {
+      return;
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setShowSuccess(false);
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [showSuccess]);
+
   function updateField<K extends FieldKey>(key: K, value: FormState[K]) {
     setFormData((current) => ({ ...current, [key]: value }));
     setErrors((current) => ({ ...current, [key]: undefined }));
@@ -293,35 +320,10 @@ export default function MauticContactForm({
     }
   }
 
-  if (showSuccess) {
-    return (
-      <div className="rounded-[28px] border border-slate-200 bg-white p-8 text-center shadow-[0_20px_48px_rgba(15,23,42,0.08)] md:p-10">
-        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brand-ink text-white">
-          <CheckCircle2 size={30} />
-        </div>
-        <p className="mt-6 text-sm font-extrabold uppercase tracking-[0.18em] text-brand-blue">
-          {successKicker}
-        </p>
-        <h3 className="mt-3 text-4xl font-black tracking-tight text-brand-ink">
-          {successTitle}
-        </h3>
-        <p className="mx-auto mt-4 max-w-xl text-lg leading-8 text-slate-600">
-          {successMessage}
-        </p>
-        <button
-          type="button"
-          onClick={() => setShowSuccess(false)}
-          className="mt-8 inline-flex min-h-[52px] items-center justify-center rounded-full border border-slate-200 px-6 text-sm font-bold text-brand-ink transition hover:border-brand-blue hover:text-brand-blue"
-        >
-          Submit another response
-        </button>
-      </div>
-    );
-  }
-
   return (
-    <div className="overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_20px_48px_rgba(15,23,42,0.08)]">
-      <div className="p-5 md:p-8">
+    <>
+      <div className="overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_20px_48px_rgba(15,23,42,0.08)]">
+        <div className="p-5 md:p-8">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-brand-blue">
@@ -731,7 +733,8 @@ export default function MauticContactForm({
                 <button
                   type="button"
                   onClick={() => handleNext((currentStep + 1) as 2 | 3)}
-                  className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-brand-ink px-6 text-sm font-bold text-white transition hover:bg-[#15133b]"
+                  className="gradient-shift-button inline-flex min-h-[52px] items-center justify-center rounded-full px-6 text-sm font-bold text-white shadow-[0_18px_34px_rgba(50,108,252,0.18)]"
+                  style={{ backgroundImage: buttonGradient }}
                 >
                   Continue
                 </button>
@@ -739,7 +742,8 @@ export default function MauticContactForm({
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-brand-ink px-6 text-sm font-bold text-white transition hover:bg-[#15133b] disabled:cursor-not-allowed disabled:opacity-60"
+                  className="gradient-shift-button inline-flex min-h-[52px] items-center justify-center rounded-full px-6 text-sm font-bold text-white shadow-[0_18px_34px_rgba(50,108,252,0.18)] disabled:cursor-not-allowed disabled:opacity-60"
+                  style={{ backgroundImage: buttonGradient }}
                 >
                   {isSubmitting ? "Submitting..." : "Submit"}
                 </button>
@@ -748,6 +752,58 @@ export default function MauticContactForm({
           </div>
         </form>
       </div>
-    </div>
+      </div>
+
+      {showSuccess && (
+        <div className="fixed inset-0 z-[999] grid min-h-dvh place-items-center bg-[rgba(248,247,255,0.74)] p-5 backdrop-blur-xl">
+          <div className="relative w-full max-w-[760px] overflow-hidden rounded-[34px] border border-white/80 bg-white/96 px-8 py-12 text-center shadow-[0_36px_90px_rgba(50,108,252,0.22)] md:px-12 md:py-16">
+            <button
+              type="button"
+              aria-label="Close"
+              onClick={() => setShowSuccess(false)}
+              className="absolute right-5 top-5 inline-flex h-10 w-10 items-center justify-center rounded-full text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+            >
+              <X size={20} />
+            </button>
+
+            <img
+              src={mikeUrl}
+              alt="Mike from WELS"
+              className="mx-auto h-24 w-24 rounded-[28px] object-cover shadow-[0_18px_40px_rgba(93,76,172,0.16)]"
+              loading="lazy"
+            />
+
+            <div className="mx-auto mt-6 flex h-16 w-16 items-center justify-center rounded-full bg-brand-ink text-white shadow-[0_18px_34px_rgba(29,27,69,0.18)]">
+              <CheckCircle2 size={28} />
+            </div>
+
+            <p className="mt-6 text-sm font-extrabold uppercase tracking-[0.18em] text-brand-blue">
+              {successKicker}
+            </p>
+            <h3 className="mx-auto mt-3 max-w-[12ch] text-4xl font-black tracking-tight text-brand-ink md:text-5xl">
+              {successTitle}
+            </h3>
+            <p className="mx-auto mt-5 max-w-[32ch] text-lg leading-8 text-slate-600">
+              {successMessage}
+            </p>
+            <p className="mx-auto mt-4 max-w-[34ch] text-base leading-7 text-slate-500">
+              Mike from WELS and our team will be in touch shortly. Thank you
+              for taking a moment to share your goals with us.
+            </p>
+
+            <div className="mt-8 flex justify-center">
+              <button
+                type="button"
+                onClick={() => setShowSuccess(false)}
+                className="gradient-shift-button inline-flex min-h-[54px] items-center justify-center rounded-full px-8 text-sm font-bold text-white shadow-[0_18px_34px_rgba(50,108,252,0.18)]"
+                style={{ backgroundImage: buttonGradient }}
+              >
+                Done
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

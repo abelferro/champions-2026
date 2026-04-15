@@ -264,17 +264,23 @@ export default function LandingPage() {
             </h1>
 
             <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-white/88 md:text-xl">
-              Celebrating the people and programs shaping the future of early
-              learning.
+              As a proud sponsor of Champions for Children 2026, WELS is
+              honored to celebrate the people and programs who share our
+              commitment to the care and development of children ages 0–5.
+            </p>
+
+            <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-white/76 md:text-lg">
+              Thank you for the work you do every day for young children, their
+              families, and the communities around them.
             </p>
 
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <a
-                href="#honorees"
+                href="#system"
                 className="gradient-shift-button inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-white shadow-[0_18px_36px_rgba(50,108,252,0.2)]"
                 style={{ backgroundImage: buttonGradient }}
               >
-                Meet the honorees
+                See how WELS supports this mission
                 <ArrowRight size={18} />
               </a>
               <a
@@ -303,76 +309,72 @@ export default function LandingPage() {
                 {honorees[0].honor}
               </p>
             </motion.article>
+
+            <div className="mt-6 grid gap-4 md:grid-cols-3">
+              {honorees.slice(1).map((person, index) => (
+                <motion.article
+                  key={person.name}
+                  {...reveal(index * 0.06)}
+                  {...cardMotion}
+                  className="rounded-[32px] border border-white/24 bg-white/14 p-6 text-left shadow-[0_24px_60px_rgba(67,31,99,0.22)] backdrop-blur-xl"
+                >
+                  <div className="rounded-[28px] border border-white/60 bg-white/10 p-4">
+                    <PortraitPlaceholder />
+                  </div>
+                  <p className="mt-5 text-xs font-extrabold uppercase tracking-[0.2em] text-white/70">
+                    Honoree
+                  </p>
+                  <h3 className="mt-3 text-3xl font-black leading-tight text-white">
+                    {person.name}
+                  </h3>
+                  <p className="mt-3 text-lg leading-8 text-white/82">
+                    {person.honor}
+                  </p>
+                </motion.article>
+              ))}
+            </div>
+
+            <div className="mt-10">
+              <div className="text-center">
+                <p className="text-sm font-extrabold uppercase tracking-[0.24em] text-white/76">
+                  Programs of the Year
+                </p>
+                <p className="mx-auto mt-3 max-w-2xl text-lg leading-8 text-white/82">
+                  Celebrating the programs creating care, trust, and momentum
+                  for children and families across the community.
+                </p>
+              </div>
+
+              <div className="mt-6 grid gap-4 md:grid-cols-3">
+                {programsOfTheYear.map((program, index) => (
+                  <motion.article
+                    key={program.name}
+                    {...reveal(0.08 * (index + 1))}
+                    {...cardMotion}
+                    className="rounded-[32px] border border-white/24 bg-white/14 p-6 text-center shadow-[0_24px_60px_rgba(67,31,99,0.22)] backdrop-blur-xl"
+                  >
+                    <div className="rounded-[28px] border border-white/60 bg-white/10 p-5">
+                      <LogoPlaceholder />
+                    </div>
+                    <p className="mt-5 text-xs font-extrabold uppercase tracking-[0.2em] text-white/70">
+                      Program Honoree
+                    </p>
+                    <h3 className="mt-3 text-3xl font-black leading-tight text-white">
+                      {program.name}
+                    </h3>
+                  </motion.article>
+                ))}
+              </div>
+            </div>
           </div>
         </motion.div>
       </section>
 
       <Section
-        id="honorees"
-        kicker="Honorees"
-        title="Recognizing the people behind the progress."
-        description="Three more leaders whose work keeps early learning moving forward every day."
-        centered
-      >
-        <div className="grid gap-4 md:grid-cols-3">
-          {honorees.slice(1).map((person, index) => (
-            <motion.article
-              key={person.name}
-              {...reveal(index * 0.06)}
-              {...cardMotion}
-              className="wels-card interactive-panel p-6"
-            >
-              <div className="rounded-[28px] border border-white/70 bg-white/40 p-4">
-                <PortraitPlaceholder />
-              </div>
-              <p className="mt-5 text-xs font-extrabold uppercase tracking-[0.2em] text-brand-pink">
-                Award honoree
-              </p>
-              <h3 className="mt-3 text-3xl font-black leading-tight text-brand-ink">
-                {person.name}
-              </h3>
-              <p className="mt-3 text-lg leading-8 text-slate-600">
-                {person.honor}
-              </p>
-            </motion.article>
-          ))}
-        </div>
-      </Section>
-
-      <Section
-        id="programs"
-        kicker="Programs of the Year"
-        title="Community impact you can feel."
-        description="Programs whose presence, trust, and care are helping children and families move forward."
-        centered
-      >
-        <div className="grid gap-4 md:grid-cols-3">
-          {programsOfTheYear.map((program, index) => (
-            <motion.article
-              key={program.name}
-              {...reveal(index * 0.06)}
-              {...cardMotion}
-              className="wels-card interactive-panel p-6 text-center"
-            >
-              <div className="rounded-[28px] border border-white/70 bg-white/40 p-5">
-                <LogoPlaceholder />
-              </div>
-              <p className="mt-5 text-xs font-extrabold uppercase tracking-[0.2em] text-brand-blue">
-                Program of the Year
-              </p>
-              <h3 className="mt-3 text-3xl font-black leading-tight text-brand-ink">
-                {program.name}
-              </h3>
-            </motion.article>
-          ))}
-        </div>
-      </Section>
-
-      <Section
         id="system"
-        kicker="Powered by WELS"
-        title="Behind every recognition, there is a system that keeps progress moving."
-        description="WELS connects records, growth, and support so recognition can lead to a real next step."
+        kicker="Sponsored by WELS"
+        title="Our mission is connected to theirs."
+        description="WELS supports the care and development of children ages 0–5 by helping the people, programs, and systems around them stay connected."
       >
         <div className="grid gap-6 xl:grid-cols-[0.9fr_1.1fr]">
           <motion.div {...reveal()} className="wels-card p-8 md:p-9">
@@ -556,8 +558,8 @@ export default function LandingPage() {
               formKicker="Start the conversation"
               formTitle="Tell us a bit about you and we'll connect you to the right next step."
               successKicker="Thanks for reaching out"
-              successTitle="We have your note."
-              successMessage="Mike from WELS and the team will follow up soon with the right next step."
+              successTitle="You're all set."
+              successMessage="Mike from WELS and our team will contact you soon with the right next step."
             />
           </div>
         </motion.div>
