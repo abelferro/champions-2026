@@ -68,13 +68,6 @@
     color: var(--color-brand-blue);
   }
 
-  .gradient-text {
-    background-image: linear-gradient(120deg, #326cfc 0%, #e44081 52%, #ffb600 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
   .champions-hero {
     background:
       radial-gradient(circle at 14% 22%, rgba(255, 245, 112, 0.88), transparent 18%),
@@ -103,57 +96,112 @@
     pointer-events: none;
   }
 
-  .hero-portrait {
+  .interactive-panel {
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease,
+      border-color 180ms ease;
+  }
+
+  .interactive-panel:hover {
+    border-color: rgba(50, 108, 252, 0.18);
+    box-shadow: 0 28px 80px rgba(29, 27, 69, 0.14);
+  }
+
+  .portrait-placeholder {
+    position: relative;
     display: flex;
-    height: 12rem;
+    min-height: 12rem;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(255, 255, 255, 0.28);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.24);
     border-radius: 28px;
     background:
-      radial-gradient(circle at top, rgba(255, 255, 255, 0.26), transparent 42%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.08));
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      radial-gradient(circle at top, rgba(255, 255, 255, 0.24), transparent 42%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.06));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
   }
 
-  .hero-portrait span {
-    font-size: clamp(2rem, 4vw, 2.8rem);
-    font-weight: 900;
-    letter-spacing: 0.08em;
-    color: rgba(255, 255, 255, 0.96);
-    text-shadow: 0 10px 25px rgba(77, 24, 91, 0.22);
-  }
-
-  .hero-portrait-lg {
-    height: 15rem;
+  .portrait-placeholder-featured {
+    min-height: 18rem;
     border-radius: 34px;
   }
 
-  .hero-portrait-featured {
-    height: 16.5rem;
-    width: min(100%, 18rem);
+  .portrait-placeholder__glow {
+    position: absolute;
+    inset: auto;
+    height: 12rem;
+    width: 12rem;
     border-radius: 999px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.34), transparent 70%);
+    filter: blur(12px);
+    opacity: 0.8;
   }
 
-  .hero-logo {
+  .portrait-placeholder__shape {
+    position: relative;
+    z-index: 1;
     display: flex;
-    min-height: 11rem;
+    height: 8rem;
+    width: 8rem;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    border-radius: 28px;
+    border-radius: 999px 999px 28px 28px;
     background:
-      radial-gradient(circle at top, rgba(255, 255, 255, 0.24), transparent 40%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.08));
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24);
+      linear-gradient(180deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.08)),
+      radial-gradient(circle at top, rgba(255, 255, 255, 0.28), transparent 45%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.22),
+      0 16px 40px rgba(77, 24, 91, 0.14);
   }
 
-  .hero-logo span {
-    font-size: clamp(2.4rem, 5vw, 3.4rem);
-    font-weight: 900;
-    letter-spacing: 0.08em;
-    color: rgba(255, 255, 255, 0.96);
-    text-shadow: 0 10px 25px rgba(77, 24, 91, 0.18);
+  .portrait-placeholder-featured .portrait-placeholder__shape {
+    height: 10rem;
+    width: 10rem;
+  }
+
+  .logo-placeholder {
+    position: relative;
+    display: grid;
+    min-height: 11rem;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 28px;
+    background:
+      radial-gradient(circle at top, rgba(255, 255, 255, 0.2), transparent 38%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.06));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  }
+
+  .logo-placeholder__ring {
+    position: absolute;
+    height: 7.5rem;
+    width: 7.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.34);
+    border-radius: 999px;
+    opacity: 0.7;
+  }
+
+  .logo-placeholder__mark {
+    position: relative;
+    z-index: 1;
+    height: 3.75rem;
+    width: 3.75rem;
+    border-radius: 1.25rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.44));
+    box-shadow: 0 14px 30px rgba(77, 24, 91, 0.16);
+    transform: rotate(12deg);
+  }
+
+  .logo-placeholder__mark--small {
+    position: absolute;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 1rem;
+    transform: translate(2.1rem, 2rem) rotate(-14deg);
+    opacity: 0.92;
   }
 
   .gradient-shift-button {
