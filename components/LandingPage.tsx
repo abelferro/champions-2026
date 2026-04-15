@@ -52,22 +52,22 @@ const honorees = [
   {
     name: "Gepsie Metellus",
     honor: "David Lawrence Jr. Champion for Children Award",
-    image: "/images/gepsie-400.png",
+    image: "./images/gepsie-400.png",
   },
   {
     name: "Twala Kelly",
     honor: "Excellence in Direct Service Award",
-    image: "/images/twala-400.png",
+    image: "./images/twala-400.png",
   },
   {
     name: "Andrea Cabrera-Elguezabal",
     honor: "Excellence in Youth Leadership Award",
-    image: "/images/andrea-400.png",
+    image: "./images/andrea-400.png",
   },
   {
     name: "Hon. Alexis Calatayud",
     honor: "Excellence in Advocacy Award",
-    image: "/images/hon-400.png",
+    image: "./images/hon-400.png",
   },
 ];
 
@@ -277,31 +277,10 @@ export default function LandingPage() {
               grow.
             </p>
 
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <a
-                href="#system"
-                className="gradient-shift-button inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white shadow-[0_18px_36px_rgba(50,108,252,0.2)]"
-                style={{ backgroundImage: buttonGradient }}
-              >
-                See how WELS supports this mission
-                <ArrowRight size={18} />
-              </a>
-              <a
-                href="#contact"
-                className="wels-outline border-white/26 bg-white/10 text-sm font-semibold text-white"
-              >
-                Start the conversation
-              </a>
-            </div>
-
             <motion.article
               {...cardMotion}
               className="mx-auto mt-10 max-w-4xl rounded-[36px] border border-white/26 bg-white/14 p-6 text-center shadow-[0_34px_90px_rgba(76,23,88,0.28)] backdrop-blur-xl md:p-8"
             >
-              <div className="inline-flex items-center gap-3 rounded-full border border-white/22 bg-white/10 px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em] text-white/88">
-                <Award size={16} />
-                Featured recognition
-              </div>
               <div className="mx-auto mt-6 max-w-[320px]">
                 <PortraitPlaceholder
                   featured
@@ -309,7 +288,7 @@ export default function LandingPage() {
                   alt={honorees[0].name}
                 />
               </div>
-              <h2 className="mt-6 text-4xl font-bold leading-tight text-white md:text-6xl">
+              <h2 className="mt-6 text-3xl font-bold leading-tight text-white md:text-5xl">
                 {honorees[0].name}
               </h2>
               <p className="mx-auto mt-4 max-w-3xl text-xl leading-8 text-white/90 md:text-2xl md:leading-9">
@@ -325,7 +304,7 @@ export default function LandingPage() {
                   {...cardMotion}
                   className="rounded-[32px] border border-white/24 bg-white/14 p-6 text-center shadow-[0_24px_60px_rgba(67,31,99,0.22)] backdrop-blur-xl"
                 >
-                  <div className="rounded-[28px] border border-white/60 bg-white/10 p-4">
+                  <div className="mx-auto max-w-[280px]">
                     <PortraitPlaceholder src={person.image} alt={person.name} />
                   </div>
                   <h3 className="mt-5 text-3xl font-bold leading-tight text-white">
@@ -369,7 +348,7 @@ export default function LandingPage() {
       </section>
 
       <section id="system" className="mx-auto max-w-7xl px-6 py-16 md:py-20">
-        <div className="grid gap-6 lg:grid-cols-[1fr_0.92fr] lg:items-center">
+        <div className="grid gap-8 lg:grid-cols-[0.98fr_0.9fr] lg:items-start">
           <motion.div {...reveal()} className="max-w-2xl">
             <p className="section-kicker">
               Proud Sponsor of Champions for Children 2026
@@ -383,15 +362,13 @@ export default function LandingPage() {
               connected.
             </p>
 
-            <div className="mt-7 rounded-[28px] border border-slate-200 bg-white/82 p-5 shadow-[0_20px_50px_rgba(15,23,42,0.06)] backdrop-blur-sm md:p-6">
-              <div className="space-y-4">
-                {systemBenefits.map((benefit) => (
-                  <div key={benefit} className="flex items-start gap-3">
-                    <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-brand-blue" />
-                    <p className="text-base leading-7 text-slate-600">{benefit}</p>
-                  </div>
-                ))}
-              </div>
+            <div className="mt-7 space-y-4">
+              {systemBenefits.map((benefit) => (
+                <div key={benefit} className="flex items-start gap-3">
+                  <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-brand-blue" />
+                  <p className="text-base leading-7 text-slate-600">{benefit}</p>
+                </div>
+              ))}
             </div>
 
             <div className="mt-7">
@@ -408,44 +385,59 @@ export default function LandingPage() {
 
           <motion.div
             {...reveal(0.08)}
-            className="rounded-[32px] border border-slate-200 bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(248,250,252,0.96))] p-5 shadow-[0_28px_80px_rgba(15,23,42,0.08)] md:p-6"
+            className="rounded-[32px] border border-slate-200 bg-white/88 p-6 shadow-[0_28px_80px_rgba(15,23,42,0.08)] backdrop-blur-sm md:p-7"
           >
-            <div className="rounded-[26px] border border-slate-200 bg-white p-5 md:p-6">
-              <div className="flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-blue/10 text-brand-blue">
-                  <LayoutDashboard size={20} />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-blue">
-                    Connected support
-                  </p>
-                  <p className="mt-1 text-base leading-7 text-slate-600">
-                    One clearer view across workforce, programs, and progress.
-                  </p>
-                </div>
+            <div className="flex items-start gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-blue/10 text-brand-blue">
+                <LayoutDashboard size={20} />
               </div>
-
-              <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                {impactStats.map((item, index) => (
-                  <motion.div
-                    key={item.label}
-                    {...reveal(index * 0.05)}
-                    className="rounded-[22px] border border-slate-200 bg-slate-50/90 p-4"
-                  >
-                    <p className="text-3xl font-bold tracking-tight text-brand-ink">
-                      {item.value}
-                    </p>
-                    <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
-                      {item.label}
-                    </p>
-                    <p className="mt-3 text-sm leading-6 text-slate-600">
-                      {item.detail}
-                    </p>
-                  </motion.div>
-                ))}
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-blue">
+                  Connected support
+                </p>
+                <p className="mt-1 max-w-md text-base leading-7 text-slate-600">
+                  One clearer view across workforce, programs, reporting, and progress.
+                </p>
               </div>
             </div>
+
+            <div className="mt-6 space-y-4">
+              {systemBenefits.map((benefit) => (
+                <div key={benefit} className="flex items-start gap-3">
+                  <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-brand-blue" />
+                  <p className="text-base leading-7 text-slate-600">{benefit}</p>
+                </div>
+              ))}
+            </div>
           </motion.div>
+        </div>
+
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          {impactStats.map((item, index) => {
+            const cardBackgrounds = [
+              "border-[rgba(50,108,252,0.16)] bg-[linear-gradient(135deg,rgba(50,108,252,0.14),rgba(255,255,255,0.96)_42%,rgba(255,255,255,0.98)_100%)]",
+              "border-[rgba(228,64,129,0.16)] bg-[linear-gradient(135deg,rgba(228,64,129,0.14),rgba(255,255,255,0.96)_42%,rgba(255,255,255,0.98)_100%)]",
+              "border-[rgba(255,214,0,0.22)] bg-[linear-gradient(135deg,rgba(255,214,0,0.18),rgba(255,255,255,0.95)_42%,rgba(255,255,255,0.98)_100%)]",
+            ];
+
+            return (
+              <motion.div
+                key={item.label}
+                {...reveal(index * 0.05)}
+                className={`rounded-[24px] border p-5 shadow-[0_18px_44px_rgba(15,23,42,0.06)] backdrop-blur-sm md:min-h-[220px] ${cardBackgrounds[index]}`}
+              >
+                <p className="text-4xl font-bold tracking-tight text-brand-ink">
+                  {item.value}
+                </p>
+                <p className="mt-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                  {item.label}
+                </p>
+                <p className="mt-4 max-w-[22ch] text-sm leading-6 text-slate-600">
+                  {item.detail}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
       </section>
 
