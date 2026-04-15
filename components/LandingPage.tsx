@@ -511,7 +511,6 @@ export default function LandingPage() {
             <MauticContactForm
               formKicker=""
               formTitle="Tell us a little about you."
-              successKicker="Thanks for reaching out"
               successTitle="You're all set."
               successMessage="Mike from WELS will reach out soon. He usually handles support and will help with the next step."
             />

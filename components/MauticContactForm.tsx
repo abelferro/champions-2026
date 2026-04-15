@@ -23,7 +23,6 @@ import { useEffect, useState } from "react";
 type ContactFormProps = {
   formKicker: string;
   formTitle: string;
-  successKicker: string;
   successTitle: string;
   successMessage: string;
 };
@@ -156,7 +155,6 @@ function RequiredDot() {
 export default function MauticContactForm({
   formKicker,
   formTitle,
-  successKicker,
   successTitle,
   successMessage,
 }: ContactFormProps) {
@@ -774,40 +772,28 @@ export default function MauticContactForm({
               type="button"
               aria-label="Close"
               onClick={() => setShowSuccess(false)}
-              className="absolute right-5 top-5 inline-flex h-10 w-10 items-center justify-center rounded-full text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+              className="absolute right-5 top-5 inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-700"
             >
-              <X size={20} />
+              <X size={24} />
             </button>
 
-            <img
-              src={mikeUrl}
-              alt="Mike from WELS"
-              className="mx-auto h-24 w-24 rounded-[28px] object-cover shadow-[0_18px_40px_rgba(93,76,172,0.16)]"
-              loading="lazy"
-            />
-
-            <p className="mt-8 text-sm font-semibold uppercase tracking-[0.18em] text-brand-blue">
-              {successKicker}
-            </p>
-            <h3 className="mx-auto mt-3 max-w-[12ch] text-4xl font-bold tracking-tight text-brand-ink md:text-5xl">
+            <h3 className="mx-auto max-w-[12ch] text-4xl font-bold tracking-tight text-brand-ink md:text-5xl">
               {successTitle}
             </h3>
             <p className="mx-auto mt-5 max-w-[34ch] text-lg leading-8 text-slate-600">
               {successMessage}
             </p>
-            <p className="mt-5 text-sm font-semibold text-slate-500">
-              Mike from WELS
-            </p>
 
-            <div className="mt-8 flex justify-center">
-              <button
-                type="button"
-                onClick={() => setShowSuccess(false)}
-                className="gradient-shift-button inline-flex min-h-[54px] items-center justify-center rounded-full px-8 text-sm font-semibold text-white shadow-[0_18px_34px_rgba(50,108,252,0.18)]"
-                style={{ backgroundImage: buttonGradient }}
-              >
-                Done
-              </button>
+            <div className="mt-8 flex flex-col items-center">
+              <img
+                src={mikeUrl}
+                alt="Mike from WELS"
+                className="h-20 w-20 rounded-[24px] object-cover shadow-[0_18px_40px_rgba(93,76,172,0.16)]"
+                loading="lazy"
+              />
+              <p className="mt-3 text-sm font-semibold text-slate-500">
+                Mike from WELS
+              </p>
             </div>
           </div>
         </div>
