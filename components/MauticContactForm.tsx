@@ -232,10 +232,18 @@ export default function MauticContactForm({
         nextErrors.first_name = "Please enter your first name.";
       }
 
+      if (!formData.last_name.trim()) {
+        nextErrors.last_name = "Please enter your last name.";
+      }
+
       if (!formData.email.trim()) {
         nextErrors.email = "Please enter your email.";
       } else if (!emailPattern.test(formData.email.trim())) {
         nextErrors.email = "Please enter a valid email address.";
+      }
+
+      if (!formData.phone_number.trim()) {
+        nextErrors.phone_number = "Please enter your phone number.";
       }
     }
 
@@ -450,6 +458,7 @@ export default function MauticContactForm({
                   <div>
                     <label className="mb-2 block text-sm font-semibold text-brand-ink">
                       Last Name
+                      <RequiredDot />
                     </label>
                     <input
                       id="mauticform_input_welslandingcapture_last_name"
@@ -461,8 +470,17 @@ export default function MauticContactForm({
                       onChange={(event) =>
                         updateField("last_name", event.target.value)
                       }
-                      className="min-h-[56px] w-full rounded-[18px] border border-slate-200 bg-white px-4 py-3 text-base text-brand-ink placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-brand-blue/10"
+                      className={`min-h-[56px] w-full rounded-[18px] border px-4 py-3 text-base text-brand-ink placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-brand-blue/10 ${
+                        errors.last_name
+                          ? "border-rose-300 bg-rose-50"
+                          : "border-slate-200 bg-white"
+                      }`}
                     />
+                    {errors.last_name && (
+                      <p className="mt-2 text-sm font-semibold text-rose-600">
+                        {errors.last_name}
+                      </p>
+                    )}
                   </div>
 
                   <div>
@@ -495,6 +513,7 @@ export default function MauticContactForm({
                   <div>
                     <label className="mb-2 block text-sm font-semibold text-brand-ink">
                       Phone
+                      <RequiredDot />
                     </label>
                     <div className="relative">
                       <input
@@ -508,13 +527,22 @@ export default function MauticContactForm({
                         onChange={(event) =>
                           updateField("phone_number", event.target.value)
                         }
-                        className="min-h-[56px] w-full rounded-[18px] border border-slate-200 bg-white px-4 py-3 pl-11 text-base text-brand-ink placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-brand-blue/10"
+                        className={`min-h-[56px] w-full rounded-[18px] border px-4 py-3 pl-11 text-base text-brand-ink placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-brand-blue/10 ${
+                          errors.phone_number
+                            ? "border-rose-300 bg-rose-50"
+                            : "border-slate-200 bg-white"
+                        }`}
                       />
                       <Phone
                         size={16}
                         className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
                       />
                     </div>
+                    {errors.phone_number && (
+                      <p className="mt-2 text-sm font-semibold text-rose-600">
+                        {errors.phone_number}
+                      </p>
+                    )}
                   </div>
                 </motion.section>
               )}
